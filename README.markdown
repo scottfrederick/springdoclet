@@ -19,13 +19,13 @@ determined by the Javadoc "-d" option, with the same defaulting rules as the sta
 
 Refer to the Ant Javadoc task documentation to configure SpringDoclet as an alternate doclet:
 
-[http://ant.apache.org/manual/CoreTasks/javadoc.html]
+<http://ant.apache.org/manual/CoreTasks/javadoc.html>
 
 ### With Maven
 
 Follow the instructions in the Maven Javadoc plugin documentation to configure SpringDoclet as an alternate doclet:
 
-[http://maven.apache.org/plugins/maven-javadoc-plugin/examples/alternate-doclet.html]
+<http://maven.apache.org/plugins/maven-javadoc-plugin/examples/alternate-doclet.html>
 
 ## Troubleshooting
 
