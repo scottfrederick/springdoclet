@@ -4,6 +4,7 @@ SpringDoclet is Javadoc doclet that generates documentation on Spring artifacts 
 Spring artifacts is based on the presence of Spring annotations on Java classes and methods.
 
 SpringDoclet currently detects and documents the following types of Spring artifacts:
+
   + **Components** - classes annotated with @Component, @Controller, @Repository, and @Service
   + **RequestMappings** - classes and methods annotated with @RequestMapping
 
