@@ -4,23 +4,23 @@ SpringDoclet is Javadoc doclet that generates documentation on Spring artifacts 
 Spring artifacts is based on the presence of Spring annotations on Java classes and methods.
 
 SpringDoclet currently detects and documents the following types of Spring artifacts:
-* Components - classes annotated with @Component, @Controller, @Repository, and @Service
-* RequestMappings - classes and methods annotated with @RequestMapping
+  * **Components** - classes annotated with @Component, @Controller, @Repository, and @Service
+  * **RequestMappings** - classes and methods annotated with @RequestMapping
 
 SpringDoclet writes its output in HTML format int a file named spring-summary.html. The location of the file is
 determined by the Javadoc "-d" option, with the same defaulting rules as the standard doclet.
 
 ## Using SpringDoclet
 
-### Using the command line
+### With the command line
 
-### Using the javadoc Ant task
+### With Ant
 
 Refer to the Ant Javadoc task documentation to configure SpringDoclet as an alternate doclet:
 
 [http://ant.apache.org/manual/CoreTasks/javadoc.html]
 
-### Using the javadoc Maven plugin
+### With Maven
 
 Follow the instructions in the Maven Javadoc plugin documentation to configure SpringDoclet as an alternate doclet:
 
@@ -31,7 +31,7 @@ Follow the instructions in the Maven Javadoc plugin documentation to configure S
 ### Annotation types in the Javadoc classpath
 The Javadoc tool must have the class files for all annotation types that are processed by SpringDoclet
 (i.e. @Controller, @RequestMapping, etc). If any annotation type cannot be located by Javadoc, you will see a messsage
-like this:
+like this in the Javadoc output:
 
     Unable to resolve annotation type '@Controller'; to fix this problem, add the class that implements
     the annotation type to the javadoc
