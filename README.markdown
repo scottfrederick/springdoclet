@@ -13,7 +13,22 @@ determined by the Javadoc "-d" option, with the same defaulting rules as the sta
 
 ## Using SpringDoclet
 
-### With the command line
+To use SpringDoclet, simply instruct the Javadoc tool to use this doclet instead (or in addition to) of the standard
+doclet. The Javadoc tool needs to be provided with:
+
+  + the name of the doclet class (**org.springdoclet.SpringDoclet**)
+  + the jar file containing the doclet classes
+
+In addition to the doclet classes, Javadoc needs access to the class files that implement the annotation types
+used to detect Spring artifacts (e.g. @Controller, @RequestMapping). Make sure the necessary Spring jar files are
+in the classpath used to run the Javadoc tool. If any annotation types cannot be located by Javadoc, SpringDoclet will
+display an message like this in the Javadoc output:
+
+    Unable to resolve annotation type '@Controller'; to fix this problem, add the class that implements
+    the annotation type to the javadoc
+
+This message will be shown for all annotations found in the Java source. It can be ignored for all non-Spring
+annotations.
 
 ### With Ant
 
@@ -27,15 +42,7 @@ Follow the instructions in the Maven Javadoc plugin documentation to configure S
 
 <http://maven.apache.org/plugins/maven-javadoc-plugin/examples/alternate-doclet.html>
 
-## Troubleshooting
+### With the command line
 
-### Annotation types in the Javadoc classpath
-The Javadoc tool must have the class files for all annotation types that are processed by SpringDoclet
-(i.e. @Controller, @RequestMapping, etc). If any annotation type cannot be located by Javadoc, you will see a messsage
-like this in the Javadoc output:
-
-    Unable to resolve annotation type '@Controller'; to fix this problem, add the class that implements
-    the annotation type to the javadoc
-
-This message will be shown for all annotations found in the Java source. It can be ignored for all non-Spring
-annotations.
+Use the "-doclet" and "-docletpath" parameters to the Javadoc command-line tool to use SpringDoclet instead of the
+standard doclet. Refer to the JDK documentation for more details.
