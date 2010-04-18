@@ -5,9 +5,11 @@ import com.sun.javadoc.RootDoc
 import com.sun.javadoc.ClassDoc
 
 class SpringDoclet extends Doclet {
-  ClassProcessor classProcessor
+  private ClassProcessor classProcessor
 
   public static boolean start(RootDoc root) {
+    ErrorReporter.setErrorReporter(root)
+    println root.options()
     try {
       SpringDoclet doclet = initDoclet()
       doclet.process(root)

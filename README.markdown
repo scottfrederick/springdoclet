@@ -8,12 +8,12 @@ SpringDoclet currently detects and documents the following types of Spring artif
   + **Components** - classes annotated with @Component, @Controller, @Repository, and @Service
   + **RequestMappings** - classes and methods annotated with @RequestMapping
 
-SpringDoclet writes its output in HTML format int a file named spring-summary.html. The location of the file is
+SpringDoclet writes its output in HTML format into a file named **spring-summary.html**. The location of the file is
 determined by the Javadoc "-d" option, with the same defaulting rules as the standard doclet.
 
 ## Using SpringDoclet
 
-To use SpringDoclet, simply instruct the Javadoc tool to use this doclet instead (or in addition to) of the standard
+To use SpringDoclet, simply instruct the Javadoc tool to use this doclet instead of (or in addition to) the standard
 doclet. The Javadoc tool needs to be provided with:
 
   + the name of the doclet class (**org.springdoclet.SpringDoclet**)
@@ -25,10 +25,10 @@ in the classpath used to run the Javadoc tool. If any annotation types cannot be
 display an message like this in the Javadoc output:
 
     Unable to resolve annotation type '@Controller'; to fix this problem, add the class that implements
-    the annotation type to the javadoc
+    the annotation type to the javadoc classpath
 
-This message will be shown for all annotations found in the Java source. It can be ignored for all non-Spring
-annotations.
+This message will be shown for all annotations found in the Java source but not found on the classpath. It can be 
+ignored for all non-Spring annotations.
 
 ### With Ant
 

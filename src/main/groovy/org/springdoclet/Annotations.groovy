@@ -18,7 +18,7 @@ class Annotations {
   }
 
   private static void reportError(annotation) {
-    System.err.println "Unable to resolve annotation type '$annotation'; " +
+    ErrorReporter.printWarning "Unable to resolve annotation type '$annotation'; " +
             "to fix this problem, add the class that implements the annotation type to the javadoc classpath"
   }
 }

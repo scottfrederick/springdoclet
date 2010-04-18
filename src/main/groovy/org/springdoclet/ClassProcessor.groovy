@@ -13,6 +13,8 @@ class ClassProcessor {
   }
 
   String toString() {
-    return collectors.toString()
+    def str = new StringBuffer()
+    collectors.each { str << it.toString() }
+    return str
   }
 }
