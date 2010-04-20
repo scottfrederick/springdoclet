@@ -32,6 +32,7 @@ class SpringDoclet extends Doclet {
       path.mkdirs()
 
     def file = new File(path, "spring-summary.html")
+    file.delete()
     file.createNewFile()
 
     return file
