@@ -3,18 +3,24 @@ package org.springdoclet
 import com.sun.javadoc.ClassDoc
 
 class ClassProcessor {
-  def collectors = []
+  Collector[] collectors
 
-  void process(ClassDoc classDoc) {
-    def annotations = classDoc.annotations()
-    if (annotations) {
-      collectors.each { collector -> collector.processClass(classDoc, annotations) }
-    }
+  ClassProcessor(Collector[] collectors) {
+    this.collectors = collectors
   }
 
-  String toString() {
-    def str = new StringBuffer()
-    collectors.each { str << it.toString() }
-    return str
+  void process(ClassDoc[] classes) {
+    collectors.each { processClasses(classes, it) }
+  }
+
+  private void processClasses(ClassDoc[] classes, Collector collector) {
+    for (classDoc in classes) {
+      def annotations = classDoc.annotations()
+      if (annotations) {
+        collector.processClass(classDoc, annotations)
+      }
+    }
+
+    collector.writeOutput()
   }
 }

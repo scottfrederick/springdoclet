@@ -1,8 +1,13 @@
 package org.springdoclet
 
-class ComponentCollector {
+class ComponentCollector implements Collector {
   private static String COMPONENT_TYPE = 'org.springframework.stereotype.'
   private componentsByType = [:]
+  File outputFile
+
+  ComponentCollector(File outputFile) {
+    this.outputFile = outputFile
+  }
 
   void processClass(classDoc, annotations) {
     for (annotation in annotations) {
@@ -21,14 +26,13 @@ class ComponentCollector {
       componentsByType[type] << classDoc.qualifiedTypeName()
   }
 
-  String toString() {
-    def str = new StringBuffer("Components:\n")
+  void writeOutput() {
+    outputFile << 'Components:\n'
     for (entry in componentsByType) {
       for (component in entry.value.sort()) {
-        str << "$entry.key: $component\n"
+        outputFile << "$entry.key: $component\n"
       }
-      str << "\n"
+      outputFile << "\n"
     }
-    return str
   }
 }

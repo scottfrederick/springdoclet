@@ -6,24 +6,23 @@ import org.junit.Test
 class SpringDocletTest {
   @Test
   public void docletInvoked() {
-    def realStdout = System.out
-    def buf = new ByteArrayOutputStream()
-    System.out = new PrintStream(buf)
-
     def args = ["-sourcepath", "./sample",
-            "-subpackages", "org.springframework.samples.petclinic"] as String[]
+            "-subpackages", "org.springframework.samples.petclinic",
+            "-d", "."] as String[]
     Main.execute "docletTest", SpringDoclet.class.name, args
 
-    def output = buf.toString()
+    File file = new File(".", "spring-summary.html")
+    assert file.exists()
 
-    System.out = realStdout
+    def output = file.readLines()
+
     println "Output=[$output]"
 
     assertComponents(output)
     assertMappings(output)
   }
 
-  private def assertMappings(String output) {
+  private def assertMappings(output) {
     assert output.contains('RequestMappings:')
     assert output.contains('GET "/owners/new"')
     assert output.contains('POST "/owners/new"')
@@ -51,7 +50,7 @@ class SpringDocletTest {
     assert output.contains('GET "/owners"')
   }
 
-  private def assertComponents(String output) {
+  private def assertComponents(output) {
     assert output.contains('Components:')
 
     assert output.contains('Controller: org.springframework.samples.petclinic.web.FindOwnersForm')

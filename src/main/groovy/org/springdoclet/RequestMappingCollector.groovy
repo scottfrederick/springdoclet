@@ -1,10 +1,16 @@
 package org.springdoclet
 
 @SuppressWarnings("GroovyVariableNotAssigned")
-class RequestMappingCollector {
+class RequestMappingCollector implements Collector {
   private static String MAPPING_TYPE = 'org.springframework.web.bind.annotation.RequestMapping'
   private static String METHOD_TYPE = 'org.springframework.web.bind.annotation.RequestMethod.'
+
+  File outputFile
   private mappings = []
+
+  RequestMappingCollector(File outputFile) {
+    this.outputFile = outputFile
+  }
 
   void processClass(classDoc, annotations) {
     def annotation = getMappingAnnotation(annotations)
@@ -66,12 +72,11 @@ class RequestMappingCollector {
     mappings << [path: path, httpMethodName: httpMethodName, className: classDoc.qualifiedTypeName()]
   }
 
-  String toString() {
-    def str = new StringBuffer('RequestMappings:\n')
+  void writeOutput() {
+    outputFile << 'RequestMappings:\n'
     def sortedMappings = mappings.sort { it.path }
     for (mapping in sortedMappings) {
-      str << "${mapping.httpMethodName} ${mapping.path}: ${mapping.className}\n"
+      outputFile << "${mapping.httpMethodName} ${mapping.path}: ${mapping.className}\n"
     }
-    return str
   }
 }
