@@ -277,20 +277,72 @@
         </executions>
       </plugin>
 
-      <!-- This plugin section was added for the SpringDoclet project as an example of using the doclet from Maven -->
+      <!-- This plugin section was added for the SpringDoclet project as an example of using the doclet from Maven. -->
+      <!-- run "mvn javadoc:javadoc" to use this plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.4</version>
+        <version>2.6.1</version>
         <configuration>
           <doclet>org.springdoclet.SpringDoclet</doclet>
-          <docletArtifact>
-            <groupId>org.springdoclet</groupId>
-            <artifactId>springdoclet</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-          </docletArtifact>
+          <docletArtifacts>
+            <docletArtifact>
+              <groupId>org.springdoclet</groupId>
+              <artifactId>springdoclet</artifactId>
+              <version>0.0.1-SNAPSHOT</version>
+            </docletArtifact>
+            <docletArtifact>
+              <groupId>org.codehaus.groovy</groupId>
+              <artifactId>groovy-all</artifactId>
+              <version>1.7.2</version>
+            </docletArtifact>
+          </docletArtifacts>
         </configuration>
       </plugin>
     </plugins>
   </build>
+
+  <reporting>
+    <plugins>
+      <!-- This plugin section was added for the SpringDoclet project as an example of using the doclet from Maven. -->
+      <!-- This configuration generates the springdoclet output in the same directory as the standard doclet output. -->
+      <!-- run "mvn site" to use this plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.6.1</version>
+        <reportSets>
+          <reportSet>
+            <id>html</id>
+            <reports>
+              <report>javadoc</report>
+            </reports>
+          </reportSet>
+          <reportSet>
+            <id>springdoc</id>
+            <configuration>
+              <name>Spring Docs</name>
+              <description>Spring artifact documentation</description>
+              <doclet>org.springdoclet.SpringDoclet</doclet>
+              <docletArtifacts>
+                <docletArtifact>
+                  <groupId>org.springdoclet</groupId>
+                  <artifactId>springdoclet</artifactId>
+                  <version>0.0.1-SNAPSHOT</version>
+                </docletArtifact>
+                <docletArtifact>
+                  <groupId>org.codehaus.groovy</groupId>
+                  <artifactId>groovy-all</artifactId>
+                  <version>1.7.2</version>
+                </docletArtifact>
+              </docletArtifacts>
+            </configuration>
+            <reports>
+              <report>javadoc</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
 </project>

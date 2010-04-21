@@ -4,7 +4,7 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.spring-doclet</groupId>
+  <groupId>org.springdoclet</groupId>
   <artifactId>springdoclet</artifactId>
   <name>Spring Doclet</name>
   <version>0.0.1-SNAPSHOT</version>
@@ -32,6 +32,7 @@
       <groupId>org.codehaus.groovy</groupId>
       <artifactId>groovy-all</artifactId>
       <version>${groovy.version}</version>
+      <scope>runtime</scope>
     </dependency>
 
     <dependency>
