@@ -1,28 +1,32 @@
 package org.springdoclet
 
+import com.sun.javadoc.AnnotationDesc
+import com.sun.javadoc.ClassDoc
+
 @SuppressWarnings("GroovyVariableNotAssigned")
 class RequestMappingCollector implements Collector {
   private static String MAPPING_TYPE = 'org.springframework.web.bind.annotation.RequestMapping'
   private static String METHOD_TYPE = 'org.springframework.web.bind.annotation.RequestMethod.'
 
-  File outputFile
+  private File outputFile
   private mappings = []
 
   RequestMappingCollector(File outputFile) {
     this.outputFile = outputFile
   }
 
-  void processClass(classDoc, annotations) {
+  void processClass(ClassDoc classDoc, AnnotationDesc[] annotations) {
     def annotation = getMappingAnnotation(annotations)
     if (annotation) {
-      def (rootPath, defaultHttpMethods) = getMappingElements(annotation)
+      def rootPath, defaultHttpMethods
+      (rootPath, defaultHttpMethods) = getMappingElements(annotation)
       processMethods classDoc, rootPath ?: "", defaultHttpMethods ?: ['GET']
     } else {
       processMethods classDoc, "", ['GET']
     }
   }
 
-  private void processMethods(def classDoc, def rootPath, def defaultHttpMethods) {
+  private void processMethods(classDoc, rootPath, defaultHttpMethods) {
     def methods = classDoc.methods(true)
     for (method in methods) {
       for (annotation in method.annotations()) {
@@ -41,7 +45,7 @@ class RequestMappingCollector implements Collector {
     }
   }
 
-  def getMappingAnnotation(annotations) {
+  private def getMappingAnnotation(annotations) {
     for (annotation in annotations) {
       def annotationType = Annotations.getTypeName(annotation)
       if (annotationType?.startsWith(MAPPING_TYPE)) {

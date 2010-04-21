@@ -1,15 +1,18 @@
 package org.springdoclet
 
+import com.sun.javadoc.ClassDoc
+import com.sun.javadoc.AnnotationDesc
+
 class ComponentCollector implements Collector {
   private static String COMPONENT_TYPE = 'org.springframework.stereotype.'
   private componentsByType = [:]
-  File outputFile
+  private File outputFile
 
   ComponentCollector(File outputFile) {
     this.outputFile = outputFile
   }
 
-  void processClass(classDoc, annotations) {
+  void processClass(ClassDoc classDoc, AnnotationDesc[] annotations) {
     for (annotation in annotations) {
       def annotationType = Annotations.getTypeName(annotation)
       if (annotationType?.startsWith(COMPONENT_TYPE)) {

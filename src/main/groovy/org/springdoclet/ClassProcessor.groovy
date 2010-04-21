@@ -1,5 +1,6 @@
 package org.springdoclet
 
+import com.sun.javadoc.AnnotationDesc
 import com.sun.javadoc.ClassDoc
 
 class ClassProcessor {
@@ -15,7 +16,7 @@ class ClassProcessor {
 
   private void processClasses(ClassDoc[] classes, Collector collector) {
     for (classDoc in classes) {
-      def annotations = classDoc.annotations()
+      AnnotationDesc[] annotations = classDoc.annotations()
       if (annotations) {
         collector.processClass(classDoc, annotations)
       }

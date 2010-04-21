@@ -9,7 +9,7 @@
   <name>Spring Doclet</name>
   <version>0.0.1-SNAPSHOT</version>
   <properties>
-    <groovy.version>1.7.1</groovy.version>
+    <groovy.version>1.7.2</groovy.version>
     <spring.version>3.0.2.RELEASE</spring.version>
     <aspectj.version>1.6.8</aspectj.version>
     <tools.version>1.5.0</tools.version>
@@ -32,14 +32,6 @@
       <groupId>org.codehaus.groovy</groupId>
       <artifactId>groovy-all</artifactId>
       <version>${groovy.version}</version>
-      <type>jar</type>
-      <exclusions>
-        <!-- this exclusion is required for groovy 1.7.1, should be fixed in 1.7.2 -->
-        <exclusion>
-          <groupId>org.fusesource.jansi</groupId>
-          <artifactId>jansi</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
 
     <dependency>
@@ -87,6 +79,7 @@
       </resource>
     </resources>
     <plugins>
+      <!--
       <plugin>
         <artifactId>maven-eclipse-plugin</artifactId>
         <configuration>
@@ -95,6 +88,7 @@
           </additionalProjectnatures>
         </configuration>
       </plugin>
+      -->
       <plugin>
         <groupId>org.codehaus.groovy.maven</groupId>
         <artifactId>gmaven-plugin</artifactId>
@@ -102,9 +96,9 @@
         <executions>
           <execution>
             <goals>
-              <!-- <goal>generateStubs</goal> -->
+              <goal>generateStubs</goal>
               <goal>compile</goal>
-              <!-- <goal>generateTestStubs</goal> -->
+              <goal>generateTestStubs</goal>
               <goal>testCompile</goal>
             </goals>
           </execution>
@@ -112,5 +106,4 @@
       </plugin>
     </plugins>
   </build>
-
 </project>
