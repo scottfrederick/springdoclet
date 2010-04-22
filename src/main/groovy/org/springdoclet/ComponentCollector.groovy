@@ -2,15 +2,11 @@ package org.springdoclet
 
 import com.sun.javadoc.ClassDoc
 import com.sun.javadoc.AnnotationDesc
+import groovy.xml.MarkupBuilder
 
 class ComponentCollector implements Collector {
   private static String COMPONENT_TYPE = 'org.springframework.stereotype.'
   private componentsByType = [:]
-  private File outputFile
-
-  ComponentCollector(File outputFile) {
-    this.outputFile = outputFile
-  }
 
   void processClass(ClassDoc classDoc, AnnotationDesc[] annotations) {
     for (annotation in annotations) {
@@ -29,13 +25,15 @@ class ComponentCollector implements Collector {
       componentsByType[type] << classDoc.qualifiedTypeName()
   }
 
-  void writeOutput() {
-    outputFile << 'Components:\n'
-    for (entry in componentsByType) {
-      for (component in entry.value.sort()) {
-        outputFile << "$entry.key: $component\n"
+  void writeOutput(MarkupBuilder builder) {
+    builder.div(id: 'components') {
+      h1 'Components'
+      for (entry in componentsByType) {
+        h2 entry.key
+        for (component in entry.value.sort()) {
+          p component
+        }
       }
-      outputFile << "\n"
     }
   }
 }

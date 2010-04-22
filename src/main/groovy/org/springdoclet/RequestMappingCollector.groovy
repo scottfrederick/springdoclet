@@ -2,18 +2,14 @@ package org.springdoclet
 
 import com.sun.javadoc.AnnotationDesc
 import com.sun.javadoc.ClassDoc
+import groovy.xml.MarkupBuilder
 
 @SuppressWarnings("GroovyVariableNotAssigned")
 class RequestMappingCollector implements Collector {
   private static String MAPPING_TYPE = 'org.springframework.web.bind.annotation.RequestMapping'
   private static String METHOD_TYPE = 'org.springframework.web.bind.annotation.RequestMethod.'
 
-  private File outputFile
   private mappings = []
-
-  RequestMappingCollector(File outputFile) {
-    this.outputFile = outputFile
-  }
 
   void processClass(ClassDoc classDoc, AnnotationDesc[] annotations) {
     def annotation = getMappingAnnotation(annotations)
@@ -76,11 +72,18 @@ class RequestMappingCollector implements Collector {
     mappings << [path: path, httpMethodName: httpMethodName, className: classDoc.qualifiedTypeName()]
   }
 
-  void writeOutput() {
-    outputFile << 'RequestMappings:\n'
-    def sortedMappings = mappings.sort { it.path }
-    for (mapping in sortedMappings) {
-      outputFile << "${mapping.httpMethodName} ${mapping.path}: ${mapping.className}\n"
+  void writeOutput(MarkupBuilder builder) {
+    builder.div(id:'request-mappings') {
+      h1 'RequestMappings'
+      table {
+        def sortedMappings = mappings.sort { it.path }
+        for (mapping in sortedMappings) {
+          tr {
+            td "${mapping.httpMethodName} ${mapping.path}"
+            td mapping.className
+          }
+        }
+      }
     }
   }
 }

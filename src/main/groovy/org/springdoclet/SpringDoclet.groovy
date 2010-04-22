@@ -12,18 +12,21 @@ class SpringDoclet extends Doclet {
 
     options = root.options()
 
-    ClassProcessor processor = initProcessor(getOutputFile())
-    processor.process(root.classes())
+    def outputFile = getOutputFile()
+
+    def collectors = getCollectors()
+
+    ClassProcessor processor = new ClassProcessor()
+    processor.process root.classes(), collectors
+
+    HtmlWriter writer = new HtmlWriter()
+    writer.writeOutput outputFile, collectors
 
     return true
   }
 
-  private static ClassProcessor initProcessor(File outputFile) {
-    Collector[] collectors = [
-            new ComponentCollector(outputFile),
-            new RequestMappingCollector(outputFile)
-    ]
-    return new ClassProcessor(collectors)
+  private static getCollectors() {
+    return [ new ComponentCollector(), new RequestMappingCollector() ]
   }
 
   private static File getOutputFile() {

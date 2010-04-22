@@ -30,19 +30,24 @@ display an message like this in the Javadoc output:
 This message will be shown for all annotations found in the Java source but not found on the classpath. It can be 
 ignored for all non-Spring annotations.
 
-### With Ant
+This doclet is implemented in the Groovy programming language. Javadoc will also need the Groovy runtime in its
+classpath to execute the SpringDoclet.
 
-Refer to the Ant Javadoc task documentation to configure SpringDoclet as an alternate doclet:
-
-<http://ant.apache.org/manual/CoreTasks/javadoc.html>
-
-### With Maven
+### SpringDoclet with Maven
 
 Follow the instructions in the Maven Javadoc plugin documentation to configure SpringDoclet as an alternate doclet:
 
 <http://maven.apache.org/plugins/maven-javadoc-plugin/examples/alternate-doclet.html>
 
-### With the command line
+An example of using SpringDoclet with Maven is also included in the project in "sample/pom.xml".  
+
+### SpringDoclet with Ant
+
+Refer to the Ant Javadoc task documentation to configure SpringDoclet as an alternate doclet:
+
+<http://ant.apache.org/manual/CoreTasks/javadoc.html>
+
+### SpringDoclet with the command line
 
 Use the "-doclet" and "-docletpath" parameters to the Javadoc command-line tool to use SpringDoclet instead of the
 standard doclet. Refer to the JDK documentation for more details.
