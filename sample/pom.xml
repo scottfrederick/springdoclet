@@ -285,18 +285,12 @@
         <version>2.6.1</version>
         <configuration>
           <doclet>org.springdoclet.SpringDoclet</doclet>
-          <docletArtifacts>
-            <docletArtifact>
-              <groupId>org.springdoclet</groupId>
-              <artifactId>springdoclet</artifactId>
-              <version>0.0.1-SNAPSHOT</version>
-            </docletArtifact>
-            <docletArtifact>
-              <groupId>org.codehaus.groovy</groupId>
-              <artifactId>groovy-all</artifactId>
-              <version>1.7.2</version>
-            </docletArtifact>
-          </docletArtifacts>
+          <docletArtifact>
+            <groupId>org.springdoclet</groupId>
+            <artifactId>springdoclet</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+          </docletArtifact>
+          <useStandardDocletOptions>false</useStandardDocletOptions>
         </configuration>
       </plugin>
     </plugins>
@@ -332,14 +326,12 @@
                 </docletArtifact>
                 <docletArtifact>
                   <groupId>org.codehaus.groovy</groupId>
-                  <artifactId>groovy-all</artifactId>
+                  <artifactId>groovy</artifactId>
                   <version>1.7.2</version>
                 </docletArtifact>
               </docletArtifacts>
+              <useStandardDocletOptions>false</useStandardDocletOptions>
             </configuration>
-            <reports>
-              <report>javadoc</report>
-            </reports>
           </reportSet>
         </reportSets>
       </plugin>
