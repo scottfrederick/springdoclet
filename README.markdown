@@ -62,10 +62,12 @@ To build SpringDoclet, use Maven from the top of the project.
   + To compile to a jar file (for use with Ant, the command line, etc), use "mvn package".
   + To deploy to a local Maven repository, use "mvn install".
 
+After building the doclet, you can test it using the "sample" directory in the project. 
+
 ## ToDos
 
 There are a number of enhancements that will be made to the doclet, including:
 
   + Create a stylesheet, and allow it to be overridden as an option
   + Make class references links to Javadocs
-  + Support additional Spring artifacts (e.g. @Aspect) 
+  + Support additional Spring artifacts (e.g. @Autowired, @Aspect) 
