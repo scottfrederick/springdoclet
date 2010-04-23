@@ -30,8 +30,8 @@ display an message like this in the Javadoc output:
 This message will be shown for all annotations found in the Java source but not found on the classpath. It can be 
 ignored for all non-Spring annotations.
 
-This doclet is implemented in the Groovy programming language. Javadoc will also need the Groovy runtime in its
-classpath to execute the SpringDoclet.
+This doclet is implemented in the Groovy programming language. Javadoc will also need the Groovy runtime (e.g.
+groovy-1.7.2.jar) in its classpath to execute the SpringDoclet.
 
 ### SpringDoclet with Maven
 
@@ -39,7 +39,8 @@ Follow the instructions in the Maven Javadoc plugin documentation to configure S
 
 <http://maven.apache.org/plugins/maven-javadoc-plugin/examples/alternate-doclet.html>
 
-An example of using SpringDoclet with Maven is also included in the project in "sample/pom.xml".  
+An example of using SpringDoclet with Maven is also included in the project. See the pom.xml file in the
+[sample](http://github.com/scottfrederick/springdoclet/tree/master/sample) directory.  
 
 ### SpringDoclet with Ant
 
@@ -58,12 +59,13 @@ Before using SpringDoclet, you will need to build and deploy it.
 
 To build SpringDoclet, use Maven from the top of the project.
 
-  + To compile to a jar file, use "mvn package".
+  + To compile to a jar file (for use with Ant, the command line, etc), use "mvn package".
   + To deploy to a local Maven repository, use "mvn install".
 
 ## ToDos
 
-There are a number of enhancements that should be made to the doclet:
+There are a number of enhancements that will be made to the doclet, including:
 
-  + Create a stylesheet, and allow it to be overridden as an option.
-  + 
+  + Create a stylesheet, and allow it to be overridden as an option
+  + Make class references links to Javadocs
+  + Support additional Spring artifacts (e.g. @Aspect) 
