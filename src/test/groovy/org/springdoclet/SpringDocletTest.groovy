@@ -2,6 +2,7 @@ package org.springdoclet
 
 import com.sun.tools.javadoc.Main
 import org.junit.Test
+import groovy.util.slurpersupport.GPathResult
 
 class SpringDocletTest {
   @Test
@@ -17,57 +18,80 @@ class SpringDocletTest {
 
     assert file.exists()
 
-    def output = file.readLines()
+    GPathResult path = new XmlSlurper().parse(file)
 
-    println "Output=[${output}]"
+    println "Output=[${file.readLines()}]"
 
-    assertMappings(output)
-    assertComponents(output)
+    assertPageStructure(path)
+    assertComponents(path)
+    assertMappings(path)
   }
 
-  private def assertMappings(output) {
-    assert output.contains('RequestMappings:')
-    
-    assert output.contains('GET "/owners/new": org.springframework.samples.petclinic.web.AddOwnerForm')
-    assert output.contains('POST "/owners/new": org.springframework.samples.petclinic.web.AddOwnerForm')
-
-    assert output.contains('GET "/owners/{ownerId}/pets/new": org.springframework.samples.petclinic.web.AddPetForm')
-    assert output.contains('POST "/owners/{ownerId}/pets/new": org.springframework.samples.petclinic.web.AddPetForm')
-
-    assert output.contains('GET "/owners/*/pets/{petId}/visits/new": org.springframework.samples.petclinic.web.AddVisitForm')
-    assert output.contains('POST "/owners/*/pets/{petId}/visits/new": org.springframework.samples.petclinic.web.AddVisitForm')
-
-    assert output.contains('GET "/": org.springframework.samples.petclinic.web.ClinicController')
-    assert output.contains('GET "/vets": org.springframework.samples.petclinic.web.ClinicController')
-    assert output.contains('GET "/owners/{ownerId}": org.springframework.samples.petclinic.web.ClinicController')
-    assert output.contains('GET "/owners/*/pets/{petId}/visits": org.springframework.samples.petclinic.web.ClinicController')
-
-    assert output.contains('GET "/owners/{ownerId}/edit": org.springframework.samples.petclinic.web.EditOwnerForm')
-    assert output.contains('PUT "/owners/{ownerId}/edit": org.springframework.samples.petclinic.web.EditOwnerForm')
-
-    assert output.contains('GET "/owners/*/pets/{petId}/edit": org.springframework.samples.petclinic.web.EditPetForm')
-    assert output.contains('PUT "/owners/*/pets/{petId}/edit": org.springframework.samples.petclinic.web.EditPetForm')
-    assert output.contains('POST "/owners/*/pets/{petId}/edit": org.springframework.samples.petclinic.web.EditPetForm')
-    assert output.contains('DELETE "/owners/*/pets/{petId}/edit": org.springframework.samples.petclinic.web.EditPetForm')
-
-    assert output.contains('GET "/owners/search": org.springframework.samples.petclinic.web.FindOwnersForm')
-    assert output.contains('GET "/owners": org.springframework.samples.petclinic.web.FindOwnersForm')
+  private def assertPageStructure(path) {
+    assert 1 == path.head.size()
+    assert 1 == path.body.size()
+    assert 2 == path.body.div.size()
   }
 
-  private def assertComponents(output) {
-    assert output.contains('Components:')
+  private def assertComponents(path) {
+    def div = path.body.div[0]
+    assert 'components' == div.'@id'.toString()
+    assert 1 == div.h1.size()
+    assert 3 == div.h2.size()
+    assert 10 == div.p.size()
 
-    assert output.contains('Controller: org.springframework.samples.petclinic.web.FindOwnersForm')
-    assert output.contains('Controller: org.springframework.samples.petclinic.web.EditPetForm')
-    assert output.contains('Controller: org.springframework.samples.petclinic.web.EditOwnerForm')
-    assert output.contains('Controller: org.springframework.samples.petclinic.web.ClinicController')
-    assert output.contains('Controller: org.springframework.samples.petclinic.web.AddVisitForm')
-    assert output.contains('Controller: org.springframework.samples.petclinic.web.AddPetForm')
-    assert output.contains('Controller: org.springframework.samples.petclinic.web.AddOwnerForm')
+    assert 'Components' == div.h1.toString()
 
-    assert output.contains('Repository: org.springframework.samples.petclinic.hibernate.HibernateClinic')
-    assert output.contains('Repository: org.springframework.samples.petclinic.jpa.EntityManagerClinic')
+    assert 'Controller' == div.h2[0].toString()
+    assert 'Repository' == div.h2[1].toString()
+    assert 'Service' == div.h2[2].toString()
 
-    assert output.contains('Service: org.springframework.samples.petclinic.jdbc.SimpleJdbcClinic')
+    assertElements div.p, [
+            'org.springframework.samples.petclinic.web.AddOwnerForm',
+            'org.springframework.samples.petclinic.web.AddPetForm',
+            'org.springframework.samples.petclinic.web.AddVisitForm',
+            'org.springframework.samples.petclinic.web.ClinicController',
+            'org.springframework.samples.petclinic.web.EditOwnerForm',
+            'org.springframework.samples.petclinic.web.EditPetForm',
+            'org.springframework.samples.petclinic.web.FindOwnersForm',
+
+            'org.springframework.samples.petclinic.hibernate.HibernateClinic',
+            'org.springframework.samples.petclinic.jpa.EntityManagerClinic',
+
+            'org.springframework.samples.petclinic.jdbc.SimpleJdbcClinic'
+    ]
+  }
+
+  private def assertMappings(path) {
+    def div = path.body.div[1]
+    assert 'request-mappings' == div.'@id'.toString()
+    assert 1 == div.h1.size()
+
+    assert 'Request Mappings' == div.h1.toString()
+
+    assertElements div.table.'*'.td, [
+            'GET', '"/"', 'org.springframework.samples.petclinic.web.ClinicController',
+            'GET', '"/owners"', 'org.springframework.samples.petclinic.web.FindOwnersForm',
+            'GET', '"/owners/*/pets/{petId}/edit"', 'org.springframework.samples.petclinic.web.EditPetForm',
+            'PUT', '"/owners/*/pets/{petId}/edit"', 'org.springframework.samples.petclinic.web.EditPetForm',
+            'POST', '"/owners/*/pets/{petId}/edit"', 'org.springframework.samples.petclinic.web.EditPetForm',
+            'DELETE', '"/owners/*/pets/{petId}/edit"', 'org.springframework.samples.petclinic.web.EditPetForm',
+            'GET', '"/owners/*/pets/{petId}/visits"', 'org.springframework.samples.petclinic.web.ClinicController',
+            'GET', '"/owners/*/pets/{petId}/visits/new"', 'org.springframework.samples.petclinic.web.AddVisitForm',
+            'POST', '"/owners/*/pets/{petId}/visits/new"', 'org.springframework.samples.petclinic.web.AddVisitForm',
+            'GET', '"/owners/new"', 'org.springframework.samples.petclinic.web.AddOwnerForm',
+            'POST', '"/owners/new"', 'org.springframework.samples.petclinic.web.AddOwnerForm',
+            'GET', '"/owners/search"', 'org.springframework.samples.petclinic.web.FindOwnersForm',
+            'GET', '"/owners/{ownerId}"', 'org.springframework.samples.petclinic.web.ClinicController',
+            'GET', '"/owners/{ownerId}/edit"', 'org.springframework.samples.petclinic.web.EditOwnerForm',
+            'PUT', '"/owners/{ownerId}/edit"', 'org.springframework.samples.petclinic.web.EditOwnerForm',
+            'GET', '"/owners/{ownerId}/pets/new"', 'org.springframework.samples.petclinic.web.AddPetForm',
+            'POST', '"/owners/{ownerId}/pets/new"', 'org.springframework.samples.petclinic.web.AddPetForm',
+            'GET', '"/vets"', 'org.springframework.samples.petclinic.web.ClinicController',
+    ]
+  }
+
+  def assertElements(element, values) {
+    values.eachWithIndex { value, index -> assert value == element[index].toString() }
   }
 }

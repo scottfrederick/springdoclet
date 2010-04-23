@@ -74,12 +74,13 @@ class RequestMappingCollector implements Collector {
 
   void writeOutput(MarkupBuilder builder) {
     builder.div(id:'request-mappings') {
-      h1 'RequestMappings'
+      h1 'Request Mappings'
       table {
         def sortedMappings = mappings.sort { it.path }
         for (mapping in sortedMappings) {
           tr {
-            td "${mapping.httpMethodName} ${mapping.path}"
+            td mapping.httpMethodName
+            td mapping.path
             td mapping.className
           }
         }
