@@ -70,4 +70,9 @@ There are a number of enhancements that will be made to the doclet, including:
 
   + Create a stylesheet, and allow it to be overridden as an option
   + Make class references links to Javadocs
-  + Support additional Spring artifacts (e.g. @Autowired, @Aspect) 
+  + Support additional Spring artifacts (e.g. @Autowired, @Aspect)
+
+## License
+
+This project is licensed under the terms of the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html).
+
