@@ -30,21 +30,22 @@ class SpringDocletTest {
   private def assertPageStructure(path) {
     assert 1 == path.head.size()
     assert 1 == path.body.size()
+    assert 1 == path.body.h1.size()
     assert 2 == path.body.div.size()
   }
 
   private def assertComponents(path) {
     def div = path.body.div[0]
     assert 'components' == div.'@id'.toString()
-    assert 1 == div.h1.size()
-    assert 3 == div.h2.size()
+    assert 1 == div.h2.size()
+    assert 3 == div.h3.size()
     assert 10 == div.p.size()
 
-    assert 'Components' == div.h1.toString()
+    assert 'Components' == div.h2.toString()
 
-    assert 'Controller' == div.h2[0].toString()
-    assert 'Repository' == div.h2[1].toString()
-    assert 'Service' == div.h2[2].toString()
+    assert 'Controller' == div.h3[0].toString()
+    assert 'Repository' == div.h3[1].toString()
+    assert 'Service' == div.h3[2].toString()
 
     assertElements div.p, [
             'org.springframework.samples.petclinic.web.AddOwnerForm',
@@ -65,9 +66,9 @@ class SpringDocletTest {
   private def assertMappings(path) {
     def div = path.body.div[1]
     assert 'request-mappings' == div.'@id'.toString()
-    assert 1 == div.h1.size()
+    assert 1 == div.h2.size()
 
-    assert 'Request Mappings' == div.h1.toString()
+    assert 'Request Mappings' == div.h2.toString()
 
     assertElements div.table.'*'.td, [
             'GET', '"/"', 'org.springframework.samples.petclinic.web.ClinicController',

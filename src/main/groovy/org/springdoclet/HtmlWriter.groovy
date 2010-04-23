@@ -11,6 +11,7 @@ class HtmlWriter {
         title 'Spring Artifacts'
       }
       body {
+        h1 'Spring Artifacts'
         for (collector in collectors) {
           collector.writeOutput builder 
         }

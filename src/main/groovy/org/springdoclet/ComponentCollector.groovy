@@ -27,9 +27,9 @@ class ComponentCollector implements Collector {
 
   void writeOutput(MarkupBuilder builder) {
     builder.div(id: 'components') {
-      h1 'Components'
+      h2 'Components'
       for (entry in componentsByType.sort()) {
-        h2 entry.key
+        h3 entry.key
         for (component in entry.value.sort()) {
           p component
         }

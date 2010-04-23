@@ -51,3 +51,19 @@ Refer to the Ant Javadoc task documentation to configure SpringDoclet as an alte
 
 Use the "-doclet" and "-docletpath" parameters to the Javadoc command-line tool to use SpringDoclet instead of the
 standard doclet. Refer to the JDK documentation for more details.
+
+## Building SpringDoclet
+
+Before using SpringDoclet, you will need to build and deploy it.
+
+To build SpringDoclet, use Maven from the top of the project.
+
+  + To compile to a jar file, use "mvn package".
+  + To deploy to a local Maven repository, use "mvn install".
+
+## ToDos
+
+There are a number of enhancements that should be made to the doclet:
+
+  + Create a stylesheet, and allow it to be overridden as an option.
+  + 
