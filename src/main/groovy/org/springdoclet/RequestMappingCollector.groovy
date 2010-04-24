@@ -77,6 +77,11 @@ class RequestMappingCollector implements Collector {
       h2 'Request Mappings'
       table {
         def sortedMappings = mappings.sort { it.path }
+        tr {
+          th 'Method'
+          th 'URL Template'
+          th 'Class'
+        }
         for (mapping in sortedMappings) {
           tr {
             td mapping.httpMethodName

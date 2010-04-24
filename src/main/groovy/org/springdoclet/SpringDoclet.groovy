@@ -4,7 +4,11 @@ import com.sun.javadoc.Doclet
 import com.sun.javadoc.RootDoc
 
 class SpringDoclet extends Doclet {
-  private static String OUTPUT_DIRECTORY = "-d"
+  private static final String OPTION_DIRECTORY = '-d'
+  private static final String OPTION_STYLESHEET = '-stylesheet'
+  private static final String DEFAULT_DIRECTORY = '.'
+  private static final String DEFAULT_STYLESHEET = './spring-summary.css'
+
   private static String[][] options
 
   public static boolean start(RootDoc root) {
@@ -12,15 +16,19 @@ class SpringDoclet extends Doclet {
 
     options = root.options()
 
-    def outputFile = getOutputFile()
+    def outputDirectory = getOption(OPTION_DIRECTORY) ?: DEFAULT_DIRECTORY
+    def stylesheet = getOption(OPTION_STYLESHEET) ?: DEFAULT_STYLESHEET
 
+    def outputFile = getOutputFile(outputDirectory)
     def collectors = getCollectors()
 
-    ClassProcessor processor = new ClassProcessor()
-    processor.process root.classes(), collectors
+    new ClassProcessor().process root.classes(), collectors
 
-    HtmlWriter writer = new HtmlWriter()
-    writer.writeOutput outputFile, collectors
+    new HtmlWriter().writeOutput outputFile, collectors, stylesheet
+
+    if (stylesheet == DEFAULT_STYLESHEET) {
+      new StylesheetWriter().writeStylesheet outputDirectory, stylesheet
+    }
 
     return true
   }
@@ -29,8 +37,8 @@ class SpringDoclet extends Doclet {
     return [ new ComponentCollector(), new RequestMappingCollector() ]
   }
 
-  private static File getOutputFile() {
-    File path = new File(getOption(OUTPUT_DIRECTORY) ?: '.')
+  private static File getOutputFile(String outputDirectory) {
+    File path = new File(outputDirectory)
     if (!path.exists())
       path.mkdirs()
 
@@ -42,18 +50,20 @@ class SpringDoclet extends Doclet {
   }
 
   public static int optionLength(String option) {
-    if (option.equals(OUTPUT_DIRECTORY)) {
-      return 2;
+    if (option.equals(OPTION_DIRECTORY)) {
+      return 2
+    } else if (option.equals(OPTION_STYLESHEET)) {
+      return 2
     }
-    return 0;
+    return 0
   }
 
   private static String getOption(String optionName) {
     for (option in options) {
       if (option[0] == optionName) {
-        return option[1];
+        return option[1]
       }
     }
-    return null;
+    return null
   }
 }

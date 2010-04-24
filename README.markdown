@@ -33,6 +33,16 @@ ignored for all non-Spring annotations.
 This doclet is implemented in the Groovy programming language. Javadoc will also need the Groovy runtime (e.g.
 groovy-1.7.2.jar) in its classpath to execute the SpringDoclet.
 
+### Options
+
+SpringDoclet supports the following options to control its operation:
+
+  + **-d**
+    Specifies the output directory for the generated documentation. Defaults to the current directory.
+  + **-stylesheet**
+    Specifies the path to a stylesheet CSS file. This can be a relative or absolute path. By default, SpringDoclet
+    creates its own stylesheet file named "spring-summary.css" in the same directory as the generated documentation.
+
 ### SpringDoclet with Maven
 
 Follow the instructions in the Maven Javadoc plugin documentation to configure SpringDoclet as an alternate doclet:
@@ -68,7 +78,6 @@ After building the doclet, you can test it using the "sample" directory in the p
 
 There are a number of enhancements that will be made to the doclet, including:
 
-  + Create a stylesheet, and allow it to be overridden as an option
   + Make class references links to Javadocs
   + Support additional Spring artifacts (e.g. @Autowired, @Aspect)
 
