@@ -37,12 +37,15 @@ groovy-1.7.2.jar) in its classpath to execute the SpringDoclet.
 
 SpringDoclet supports the following options to control its operation:
 
-  + **-d**
+  + **-d** _directory_
+
     Specifies the output directory for the generated documentation. Defaults to the current directory.
-  + **-stylesheet**
+
+  + **-stylesheet** _path_
+
     Specifies the path to a stylesheet CSS file. This can be a relative or absolute path. By default, SpringDoclet
     creates its own stylesheet file named "spring-summary.css" in the same directory as the generated documentation.
-
+    
 ### SpringDoclet with Maven
 
 Follow the instructions in the Maven Javadoc plugin documentation to configure SpringDoclet as an alternate doclet:
