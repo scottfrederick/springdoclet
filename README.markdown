@@ -41,6 +41,10 @@ SpringDoclet supports the following options to control its operation:
 
     Specifies the output directory for the generated documentation. Defaults to the current directory.
 
+  + **-f** _filename_
+
+    Specifies the name of the output file for the generated documentation. Defaults to the "spring-summary.html".
+
   + **-stylesheet** _path_
 
     Specifies the path to a stylesheet CSS file. This can be a relative or absolute path. By default, SpringDoclet
@@ -53,7 +57,11 @@ Follow the instructions in the Maven Javadoc plugin documentation to configure S
 <http://maven.apache.org/plugins/maven-javadoc-plugin/examples/alternate-doclet.html>
 
 An example of using SpringDoclet with Maven is also included in the project. See the pom.xml file in the
-[sample](http://github.com/scottfrederick/springdoclet/tree/master/sample) directory.  
+[sample](http://github.com/scottfrederick/springdoclet/tree/master/sample) directory.
+
+When using SpringDoclet with the Maven Javadoc plugin, the generated Maven site HTML will assume there is a file named
+index.html in the output directory. You can use the "-f" option to override the default output file name to
+"index.html" for compatibility with Maven site generation.
 
 ### SpringDoclet with Ant
 

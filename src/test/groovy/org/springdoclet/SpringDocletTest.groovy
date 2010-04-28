@@ -7,13 +7,16 @@ import groovy.util.slurpersupport.GPathResult
 class SpringDocletTest {
   @Test
   public void docletInvoked() {
-    File file = new File("./sample", "spring-summary.html")
+    final String fileName = "spring-doc.html"
+
+    File file = new File("./sample", fileName)
     file.delete()
     assert !file.exists()
 
     def args = ["-sourcepath", "./sample/src/main/java",
             "-subpackages", "org.springframework.samples.petclinic",
-            "-d", "./sample"] as String[]
+            "-d", "./sample",
+            "-f", fileName] as String[]
     Main.execute "docletTest", SpringDoclet.class.name, args
 
     assert file.exists()

@@ -5,8 +5,10 @@ import com.sun.javadoc.RootDoc
 
 class SpringDoclet extends Doclet {
   private static final String OPTION_DIRECTORY = '-d'
+  private static final String OPTION_FILENAME = '-f'
   private static final String OPTION_STYLESHEET = '-stylesheet'
   private static final String DEFAULT_DIRECTORY = '.'
+  private static final String DEFAULT_FILENAME = './spring-summary.html'
   private static final String DEFAULT_STYLESHEET = './spring-summary.css'
 
   private static String[][] options
@@ -17,9 +19,10 @@ class SpringDoclet extends Doclet {
     options = root.options()
 
     def outputDirectory = getOption(OPTION_DIRECTORY) ?: DEFAULT_DIRECTORY
+    def outputFileName = getOption(OPTION_FILENAME) ?: DEFAULT_FILENAME
     def stylesheet = getOption(OPTION_STYLESHEET) ?: DEFAULT_STYLESHEET
 
-    def outputFile = getOutputFile(outputDirectory)
+    def outputFile = getOutputFile(outputDirectory, outputFileName)
     def collectors = getCollectors()
 
     new ClassProcessor().process root.classes(), collectors
@@ -37,12 +40,12 @@ class SpringDoclet extends Doclet {
     return [ new ComponentCollector(), new RequestMappingCollector() ]
   }
 
-  private static File getOutputFile(String outputDirectory) {
+  private static File getOutputFile(String outputDirectory, String outputFileName) {
     File path = new File(outputDirectory)
     if (!path.exists())
       path.mkdirs()
 
-    def file = new File(path, "spring-summary.html")
+    def file = new File(path, outputFileName)
     file.delete()
     file.createNewFile()
 
@@ -51,6 +54,8 @@ class SpringDoclet extends Doclet {
 
   public static int optionLength(String option) {
     if (option.equals(OPTION_DIRECTORY)) {
+      return 2
+    } else if (option.equals(OPTION_FILENAME)) {
       return 2
     } else if (option.equals(OPTION_STYLESHEET)) {
       return 2
