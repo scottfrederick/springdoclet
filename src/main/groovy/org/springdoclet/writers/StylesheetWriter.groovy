@@ -1,4 +1,4 @@
-package org.springdoclet
+package org.springdoclet.writers
 
 class StylesheetWriter {
 

@@ -1,8 +1,10 @@
-package org.springdoclet
+package org.springdoclet.collectors
 
 import com.sun.javadoc.AnnotationDesc
 import com.sun.javadoc.ClassDoc
 import groovy.xml.MarkupBuilder
+import org.springdoclet.Collector
+import org.springdoclet.Annotations
 
 @SuppressWarnings("GroovyVariableNotAssigned")
 class RequestMappingCollector implements Collector {

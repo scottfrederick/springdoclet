@@ -2,6 +2,10 @@ package org.springdoclet
 
 import com.sun.javadoc.Doclet
 import com.sun.javadoc.RootDoc
+import org.springdoclet.writers.StylesheetWriter
+import org.springdoclet.writers.HtmlWriter
+import org.springdoclet.collectors.RequestMappingCollector
+import org.springdoclet.collectors.ComponentCollector
 
 class SpringDoclet extends Doclet {
   private static final String OPTION_DIRECTORY = '-d'

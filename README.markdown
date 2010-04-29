@@ -43,7 +43,7 @@ SpringDoclet supports the following options to control its operation:
 
   + **-f** _filename_
 
-    Specifies the name of the output file for the generated documentation. Defaults to the "spring-summary.html".
+    Specifies the name of the output file for the generated documentation. Defaults to "spring-summary.html".
 
   + **-stylesheet** _path_
 
