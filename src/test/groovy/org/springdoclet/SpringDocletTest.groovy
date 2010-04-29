@@ -16,7 +16,8 @@ class SpringDocletTest {
     def args = ["-sourcepath", "./sample/src/main/java",
             "-subpackages", "org.springframework.samples.petclinic",
             "-d", "./sample",
-            "-f", fileName] as String[]
+            "-f", fileName,
+            "-linkpath", "../apidocs/"] as String[]
     Main.execute "docletTest", SpringDoclet.class.name, args
 
     assert file.exists()
@@ -42,7 +43,7 @@ class SpringDocletTest {
     assert 'components' == div.'@id'.toString()
     assert 1 == div.h2.size()
     assert 3 == div.h3.size()
-    assert 10 == div.p.size()
+    assert 10 == div.a.size()
 
     assert 'Components' == div.h2.toString()
 
@@ -50,7 +51,7 @@ class SpringDocletTest {
     assert 'Repository' == div.h3[1].toString()
     assert 'Service' == div.h3[2].toString()
 
-    assertElements div.p, [
+    assertElements div.a, [
             'org.springframework.samples.petclinic.web.AddOwnerForm',
             'org.springframework.samples.petclinic.web.AddPetForm',
             'org.springframework.samples.petclinic.web.AddVisitForm',
@@ -63,6 +64,21 @@ class SpringDocletTest {
             'org.springframework.samples.petclinic.jpa.EntityManagerClinic',
 
             'org.springframework.samples.petclinic.jdbc.SimpleJdbcClinic'
+    ]
+
+    assertElements div.a.@href, [
+            '../apidocs/org/springframework/samples/petclinic/web/AddOwnerForm.html',
+            '../apidocs/org/springframework/samples/petclinic/web/AddPetForm.html',
+            '../apidocs/org/springframework/samples/petclinic/web/AddVisitForm.html',
+            '../apidocs/org/springframework/samples/petclinic/web/ClinicController.html',
+            '../apidocs/org/springframework/samples/petclinic/web/EditOwnerForm.html',
+            '../apidocs/org/springframework/samples/petclinic/web/EditPetForm.html',
+            '../apidocs/org/springframework/samples/petclinic/web/FindOwnersForm.html',
+
+            '../apidocs/org/springframework/samples/petclinic/hibernate/HibernateClinic.html',
+            '../apidocs/org/springframework/samples/petclinic/jpa/EntityManagerClinic.html',
+
+            '../apidocs/org/springframework/samples/petclinic/jdbc/SimpleJdbcClinic.html'
     ]
   }
 

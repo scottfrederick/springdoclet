@@ -50,6 +50,11 @@ SpringDoclet supports the following options to control its operation:
     Specifies the path to a stylesheet CSS file. This can be a relative or absolute path. By default, SpringDoclet
     creates its own stylesheet file named "spring-summary.css" in the same directory as the generated documentation.
     
+  + **-linkpath** _path_
+
+    Specifies the path to documentation for source code files (i.e. JavaDoc or JXR xref files). This should be set
+    to the root of the directory containing the source code documentation HTML files. Defaults to the current directory.
+
 ### SpringDoclet with Maven
 
 Follow the instructions in the Maven Javadoc plugin documentation to configure SpringDoclet as an alternate doclet:
@@ -89,7 +94,6 @@ After building the doclet, you can test it using the "sample" directory in the p
 
 There are a number of enhancements that will be made to the doclet, including:
 
-  + Make class references links to Javadocs
   + Support additional Spring artifacts (e.g. @Autowired, @Aspect)
 
 ## License

@@ -320,6 +320,7 @@
               <destDir>springdocs</destDir>
               <additionalparam>
                 -f index.html
+                -linkpath ../xref/
               </additionalparam>
             </configuration>
             <reports>
@@ -333,6 +334,11 @@
             </reports>
           </reportSet>
         </reportSets>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
       </plugin>
     </plugins>
   </reporting>

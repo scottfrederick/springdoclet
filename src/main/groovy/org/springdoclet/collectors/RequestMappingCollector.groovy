@@ -5,6 +5,7 @@ import com.sun.javadoc.ClassDoc
 import groovy.xml.MarkupBuilder
 import org.springdoclet.Collector
 import org.springdoclet.Annotations
+import org.springdoclet.PathBuilder
 
 @SuppressWarnings("GroovyVariableNotAssigned")
 class RequestMappingCollector implements Collector {
@@ -74,7 +75,7 @@ class RequestMappingCollector implements Collector {
     mappings << [path: path, httpMethodName: httpMethodName, className: classDoc.qualifiedTypeName()]
   }
 
-  void writeOutput(MarkupBuilder builder) {
+  void writeOutput(MarkupBuilder builder, PathBuilder paths) {
     builder.div(id:'request-mappings') {
       h2 'Request Mappings'
       table {
@@ -88,7 +89,9 @@ class RequestMappingCollector implements Collector {
           tr {
             td mapping.httpMethodName
             td mapping.path
-            td mapping.className
+            td {
+              a(href: paths.buildFilePath(mapping.className), mapping.className)
+            }
           }
         }
       }

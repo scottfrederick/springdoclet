@@ -5,6 +5,7 @@ import com.sun.javadoc.AnnotationDesc
 import groovy.xml.MarkupBuilder
 import org.springdoclet.Collector
 import org.springdoclet.Annotations
+import org.springdoclet.PathBuilder
 
 class ComponentCollector implements Collector {
   private static String COMPONENT_TYPE = 'org.springframework.stereotype.'
@@ -27,13 +28,14 @@ class ComponentCollector implements Collector {
       componentsByType[type] << classDoc.qualifiedTypeName()
   }
 
-  void writeOutput(MarkupBuilder builder) {
+  void writeOutput(MarkupBuilder builder, PathBuilder paths) {
     builder.div(id: 'components') {
       h2 'Components'
       for (entry in componentsByType.sort()) {
         h3 entry.key
         for (component in entry.value.sort()) {
-          p component
+          a(href:paths.buildFilePath(component), component)
+          br()
         }
       }
     }

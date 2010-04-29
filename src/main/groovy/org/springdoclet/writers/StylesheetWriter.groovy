@@ -1,9 +1,11 @@
 package org.springdoclet.writers
 
+import org.springdoclet.Configuration
+
 class StylesheetWriter {
 
-  def writeStylesheet(String outputDirectory, String stylesheet) {
-    def file = new File(outputDirectory, stylesheet)
+  def writeStylesheet(Configuration config) {
+    def file = new File(config.outputDirectory, config.styleSheet)
     file << STYLESHEET_CONTENT
   }
 
@@ -16,7 +18,7 @@ body {
 }
 
 a {
-  color: #2c7b14;
+  color: #003300;
   text-decoration: none;
 }
 

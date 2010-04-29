@@ -6,5 +6,5 @@ import groovy.xml.MarkupBuilder
 
 interface Collector {
   void processClass(ClassDoc classDoc, AnnotationDesc[] annotations)
-  void writeOutput(MarkupBuilder builder)
+  void writeOutput(MarkupBuilder builder, PathBuilder paths)
 }
