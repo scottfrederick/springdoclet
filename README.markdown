@@ -11,6 +11,26 @@ SpringDoclet currently detects and documents the following types of Spring artif
 SpringDoclet writes its output in HTML format into a file named **spring-summary.html**. The location of the file is
 determined by the Javadoc "-d" option, with the same defaulting rules as the standard doclet.
 
+## Building SpringDoclet
+
+Before using SpringDoclet, you will need to build it and make it available in your build tool.
+
+To build SpringDoclet, use Maven from the root directory of the project.
+
+  + To build the doclet and deploy it to a local Maven repository, use "mvn install".
+  + To build the doclet and package it as a jar file (for use with Ant, the command line, etc), use 
+     "mvn assembly:assembly". This will create a single .jar file in the "target" directory of the project. The .jar file 
+     contains the SpringDoclet classes and all dependent libraries.
+
+After building the doclet, you can test it with either Maven or Ant in the "sample" directory in the project. 
+
+  + To test the doclet with Maven, navigate to the "sample" directory and run "mvn site". This should generate standard
+     Maven site output in the "sample/target/site" directory. The "Project Reports" section of the generated site should
+     have a link to a Spring Docs report along with JavaDocs and Source Xref reports. Classes in the Spring Docs report 
+     are cross-linked to the Source Xref report. 
+  + To test the doclet with Ant, navigate to the "sample" directory and run "ant build". This should create directories under
+     "sample/target" containing standard Javadoc output and SpringDoclet output. 
+
 ## Using SpringDoclet
 
 To use SpringDoclet, simply instruct the Javadoc tool to use this doclet instead of (or in addition to) the standard
@@ -81,19 +101,6 @@ An example of using SpringDoclet with Ant is also included in the project. See t
 
 Use the "-doclet" and "-docletpath" parameters to the Javadoc command-line tool to use SpringDoclet instead of the
 standard doclet. Refer to the JDK documentation for more details.
-
-## Building SpringDoclet
-
-Before using SpringDoclet, you will need to build and deploy it.
-
-To build SpringDoclet, use Maven from the top of the project.
-
-  + To compile to a jar file (for use with Ant, the command line, etc), use "mvn assembly:assembly". This will
-    create a single .jar file in the "target" directory of the project. The .jar file contains SpringDoclet and
-    all dependent libraries.
-  + To deploy to a local Maven repository, use "mvn install".
-
-After building the doclet, you can test it using the "sample" directory in the project. 
 
 ## ToDos
 
