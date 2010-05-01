@@ -2,7 +2,6 @@ package org.springdoclet
 
 import com.sun.tools.javadoc.Main
 import org.junit.Test
-import groovy.util.slurpersupport.GPathResult
 
 class SpringDocletTest {
   @Test
@@ -14,21 +13,29 @@ class SpringDocletTest {
     assert !file.exists()
 
     def args = ["-sourcepath", "./sample/src/main/java",
+            "-classpath", getClassPath(),
             "-subpackages", "org.springframework.samples.petclinic",
             "-d", "./sample",
             "-f", fileName,
             "-linkpath", "../apidocs/"] as String[]
+    println "javadoc args=$args"
     Main.execute "docletTest", SpringDoclet.class.name, args
 
     assert file.exists()
 
-    GPathResult path = new XmlSlurper().parse(file)
+    def path = new XmlSlurper().parse(file)
 
     println "Output=[${file.readLines()}]"
 
     assertPageStructure(path)
     assertComponents(path)
     assertMappings(path)
+  }
+
+  def getClassPath() {
+    def loaderUrls = this.class.classLoader.URLs
+    def files = loaderUrls.collect { new URI(it.toString()).path - '/'}
+    return files.join(';')
   }
 
   private def assertPageStructure(path) {

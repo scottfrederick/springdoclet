@@ -74,6 +74,9 @@ Refer to the Ant Javadoc task documentation to configure SpringDoclet as an alte
 
 <http://ant.apache.org/manual/CoreTasks/javadoc.html>
 
+An example of using SpringDoclet with Ant is also included in the project. See the build.xml file in the
+[sample](http://github.com/scottfrederick/springdoclet/tree/master/sample) directory.
+
 ### SpringDoclet with the command line
 
 Use the "-doclet" and "-docletpath" parameters to the Javadoc command-line tool to use SpringDoclet instead of the
@@ -85,7 +88,9 @@ Before using SpringDoclet, you will need to build and deploy it.
 
 To build SpringDoclet, use Maven from the top of the project.
 
-  + To compile to a jar file (for use with Ant, the command line, etc), use "mvn package".
+  + To compile to a jar file (for use with Ant, the command line, etc), use "mvn assembly:assembly". This will
+    create a single .jar file in the "target" directory of the project. The .jar file contains SpringDoclet and
+    all dependent libraries.
   + To deploy to a local Maven repository, use "mvn install".
 
 After building the doclet, you can test it using the "sample" directory in the project. 
