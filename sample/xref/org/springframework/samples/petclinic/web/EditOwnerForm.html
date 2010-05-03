@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+<title>EditOwnerForm xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../../apidocs/org/springframework/samples/petclinic/web/EditOwnerForm.html">View Javadoc</a></div><pre>
+
+<a name="1" href="#1">1</a>   
+<a name="2" href="#2">2</a>   <strong class="jxr_keyword">package</strong> org.springframework.samples.petclinic.web;
+<a name="3" href="#3">3</a>   
+<a name="4" href="#4">4</a>   <strong class="jxr_keyword">import</strong> org.springframework.beans.factory.annotation.Autowired;
+<a name="5" href="#5">5</a>   <strong class="jxr_keyword">import</strong> org.springframework.samples.petclinic.Clinic;
+<a name="6" href="#6">6</a>   <strong class="jxr_keyword">import</strong> org.springframework.samples.petclinic.Owner;
+<a name="7" href="#7">7</a>   <strong class="jxr_keyword">import</strong> org.springframework.samples.petclinic.validation.OwnerValidator;
+<a name="8" href="#8">8</a>   <strong class="jxr_keyword">import</strong> org.springframework.stereotype.Controller;
+<a name="9" href="#9">9</a>   <strong class="jxr_keyword">import</strong> org.springframework.ui.Model;
+<a name="10" href="#10">10</a>  <strong class="jxr_keyword">import</strong> org.springframework.validation.BindingResult;
+<a name="11" href="#11">11</a>  <strong class="jxr_keyword">import</strong> org.springframework.web.bind.WebDataBinder;
+<a name="12" href="#12">12</a>  <strong class="jxr_keyword">import</strong> org.springframework.web.bind.annotation.InitBinder;
+<a name="13" href="#13">13</a>  <strong class="jxr_keyword">import</strong> org.springframework.web.bind.annotation.ModelAttribute;
+<a name="14" href="#14">14</a>  <strong class="jxr_keyword">import</strong> org.springframework.web.bind.annotation.PathVariable;
+<a name="15" href="#15">15</a>  <strong class="jxr_keyword">import</strong> org.springframework.web.bind.annotation.RequestMapping;
+<a name="16" href="#16">16</a>  <strong class="jxr_keyword">import</strong> org.springframework.web.bind.annotation.RequestMethod;
+<a name="17" href="#17">17</a>  <strong class="jxr_keyword">import</strong> org.springframework.web.bind.annotation.SessionAttributes;
+<a name="18" href="#18">18</a>  <strong class="jxr_keyword">import</strong> org.springframework.web.bind.support.SessionStatus;
+<a name="19" href="#19">19</a>  
+<a name="20" href="#20">20</a>  <em class="jxr_javadoccomment">/**</em>
+<a name="21" href="#21">21</a>  <em class="jxr_javadoccomment"> * JavaBean Form controller that is used to edit an existing &lt;code&gt;Owner&lt;/code&gt;.</em>
+<a name="22" href="#22">22</a>  <em class="jxr_javadoccomment"> * </em>
+<a name="23" href="#23">23</a>  <em class="jxr_javadoccomment"> * @author Juergen Hoeller</em>
+<a name="24" href="#24">24</a>  <em class="jxr_javadoccomment"> * @author Ken Krebs</em>
+<a name="25" href="#25">25</a>  <em class="jxr_javadoccomment"> * @author Arjen Poutsma</em>
+<a name="26" href="#26">26</a>  <em class="jxr_javadoccomment"> */</em>
+<a name="27" href="#27">27</a>  @org.springframework.stereotype.Controller
+<a name="28" href="#28">28</a>  @RequestMapping(<span class="jxr_string">"/owners/{ownerId}/edit"</span>)
+<a name="29" href="#29">29</a>  @SessionAttributes(types = Owner.<strong class="jxr_keyword">class</strong>)
+<a name="30" href="#30">30</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../org/springframework/samples/petclinic/web/EditOwnerForm.html">EditOwnerForm</a> {
+<a name="31" href="#31">31</a>  
+<a name="32" href="#32">32</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../../../../../org/springframework/samples/petclinic/Clinic.html">Clinic</a> clinic;
+<a name="33" href="#33">33</a>  
+<a name="34" href="#34">34</a>  
+<a name="35" href="#35">35</a>  	@Autowired
+<a name="36" href="#36">36</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../../org/springframework/samples/petclinic/web/EditOwnerForm.html">EditOwnerForm</a>(<a href="../../../../../org/springframework/samples/petclinic/Clinic.html">Clinic</a> clinic) {
+<a name="37" href="#37">37</a>  		<strong class="jxr_keyword">this</strong>.clinic = clinic;
+<a name="38" href="#38">38</a>  	}
+<a name="39" href="#39">39</a>  
+<a name="40" href="#40">40</a>  	@InitBinder
+<a name="41" href="#41">41</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setAllowedFields(WebDataBinder dataBinder) {
+<a name="42" href="#42">42</a>  		dataBinder.setDisallowedFields(<span class="jxr_string">"id"</span>);
+<a name="43" href="#43">43</a>  	}
+<a name="44" href="#44">44</a>  
+<a name="45" href="#45">45</a>  	@RequestMapping(method = RequestMethod.GET)
+<a name="46" href="#46">46</a>  	<strong class="jxr_keyword">public</strong> String setupForm(@PathVariable(<span class="jxr_string">"ownerId"</span>) <strong class="jxr_keyword">int</strong> ownerId, Model model) {
+<a name="47" href="#47">47</a>  		Owner owner = <strong class="jxr_keyword">this</strong>.clinic.loadOwner(ownerId);
+<a name="48" href="#48">48</a>  		model.addAttribute(owner);
+<a name="49" href="#49">49</a>  		<strong class="jxr_keyword">return</strong> <span class="jxr_string">"owners/form"</span>;
+<a name="50" href="#50">50</a>  	}
+<a name="51" href="#51">51</a>  
+<a name="52" href="#52">52</a>  	@RequestMapping(method = RequestMethod.PUT)
+<a name="53" href="#53">53</a>  	<strong class="jxr_keyword">public</strong> String processSubmit(@ModelAttribute <a href="../../../../../org/springframework/samples/petclinic/Owner.html">Owner</a> owner, BindingResult result, SessionStatus status) {
+<a name="54" href="#54">54</a>  		<strong class="jxr_keyword">new</strong> <a href="../../../../../org/springframework/samples/petclinic/validation/OwnerValidator.html">OwnerValidator</a>().validate(owner, result);
+<a name="55" href="#55">55</a>  		<strong class="jxr_keyword">if</strong> (result.hasErrors()) {
+<a name="56" href="#56">56</a>  			<strong class="jxr_keyword">return</strong> <span class="jxr_string">"owners/form"</span>;
+<a name="57" href="#57">57</a>  		}
+<a name="58" href="#58">58</a>  		<strong class="jxr_keyword">else</strong> {
+<a name="59" href="#59">59</a>  			<strong class="jxr_keyword">this</strong>.clinic.storeOwner(owner);
+<a name="60" href="#60">60</a>  			status.setComplete();
+<a name="61" href="#61">61</a>  			<strong class="jxr_keyword">return</strong> <span class="jxr_string">"redirect:/owners/"</span> + owner.getId();
+<a name="62" href="#62">62</a>  		}
+<a name="63" href="#63">63</a>  	}
+<a name="64" href="#64">64</a>  
+<a name="65" href="#65">65</a>  }
+</pre>
+<hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
+</html>
+

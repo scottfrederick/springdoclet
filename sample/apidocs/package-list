@@ -1,0 +1,8 @@
+org.springframework.samples.petclinic
+org.springframework.samples.petclinic.aspects
+org.springframework.samples.petclinic.hibernate
+org.springframework.samples.petclinic.jdbc
+org.springframework.samples.petclinic.jpa
+org.springframework.samples.petclinic.util
+org.springframework.samples.petclinic.validation
+org.springframework.samples.petclinic.web

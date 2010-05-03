@@ -1,0 +1,177 @@
+<html>
+  <head>
+    <title>Spring Artifacts</title>
+    <link rel='stylesheet' type='text/css' href='./spring-summary.css' />
+  </head>
+  <body>
+    <h1>Spring Artifacts</h1>
+    <hr />
+    <div id='components'>
+      <h2>Components</h2>
+      <h3>Controller</h3>
+      <a href='../xref/org/springframework/samples/petclinic/web/AddOwnerForm.html'>org.springframework.samples.petclinic.web.AddOwnerForm</a>
+      <br />
+      <a href='../xref/org/springframework/samples/petclinic/web/AddPetForm.html'>org.springframework.samples.petclinic.web.AddPetForm</a>
+      <br />
+      <a href='../xref/org/springframework/samples/petclinic/web/AddVisitForm.html'>org.springframework.samples.petclinic.web.AddVisitForm</a>
+      <br />
+      <a href='../xref/org/springframework/samples/petclinic/web/ClinicController.html'>org.springframework.samples.petclinic.web.ClinicController</a>
+      <br />
+      <a href='../xref/org/springframework/samples/petclinic/web/EditOwnerForm.html'>org.springframework.samples.petclinic.web.EditOwnerForm</a>
+      <br />
+      <a href='../xref/org/springframework/samples/petclinic/web/EditPetForm.html'>org.springframework.samples.petclinic.web.EditPetForm</a>
+      <br />
+      <a href='../xref/org/springframework/samples/petclinic/web/FindOwnersForm.html'>org.springframework.samples.petclinic.web.FindOwnersForm</a>
+      <br />
+      <h3>Repository</h3>
+      <a href='../xref/org/springframework/samples/petclinic/hibernate/HibernateClinic.html'>org.springframework.samples.petclinic.hibernate.HibernateClinic</a>
+      <br />
+      <a href='../xref/org/springframework/samples/petclinic/jpa/EntityManagerClinic.html'>org.springframework.samples.petclinic.jpa.EntityManagerClinic</a>
+      <br />
+      <h3>Service</h3>
+      <a href='../xref/org/springframework/samples/petclinic/jdbc/SimpleJdbcClinic.html'>org.springframework.samples.petclinic.jdbc.SimpleJdbcClinic</a>
+      <br />
+    </div>
+    <hr />
+    <div id='request-mappings'>
+      <h2>Request Mappings</h2>
+      <table>
+        <tr>
+          <th>Method</th>
+          <th>URL Template</th>
+          <th>Class</th>
+        </tr>
+        <tr>
+          <td>GET</td>
+          <td>"/"</td>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/web/ClinicController.html'>org.springframework.samples.petclinic.web.ClinicController</a>
+          </td>
+        </tr>
+        <tr>
+          <td>GET</td>
+          <td>"/owners"</td>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/web/FindOwnersForm.html'>org.springframework.samples.petclinic.web.FindOwnersForm</a>
+          </td>
+        </tr>
+        <tr>
+          <td>GET</td>
+          <td>"/owners/*/pets/{petId}/edit"</td>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/web/EditPetForm.html'>org.springframework.samples.petclinic.web.EditPetForm</a>
+          </td>
+        </tr>
+        <tr>
+          <td>PUT</td>
+          <td>"/owners/*/pets/{petId}/edit"</td>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/web/EditPetForm.html'>org.springframework.samples.petclinic.web.EditPetForm</a>
+          </td>
+        </tr>
+        <tr>
+          <td>POST</td>
+          <td>"/owners/*/pets/{petId}/edit"</td>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/web/EditPetForm.html'>org.springframework.samples.petclinic.web.EditPetForm</a>
+          </td>
+        </tr>
+        <tr>
+          <td>DELETE</td>
+          <td>"/owners/*/pets/{petId}/edit"</td>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/web/EditPetForm.html'>org.springframework.samples.petclinic.web.EditPetForm</a>
+          </td>
+        </tr>
+        <tr>
+          <td>GET</td>
+          <td>"/owners/*/pets/{petId}/visits"</td>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/web/ClinicController.html'>org.springframework.samples.petclinic.web.ClinicController</a>
+          </td>
+        </tr>
+        <tr>
+          <td>GET</td>
+          <td>"/owners/*/pets/{petId}/visits/new"</td>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/web/AddVisitForm.html'>org.springframework.samples.petclinic.web.AddVisitForm</a>
+          </td>
+        </tr>
+        <tr>
+          <td>POST</td>
+          <td>"/owners/*/pets/{petId}/visits/new"</td>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/web/AddVisitForm.html'>org.springframework.samples.petclinic.web.AddVisitForm</a>
+          </td>
+        </tr>
+        <tr>
+          <td>GET</td>
+          <td>"/owners/new"</td>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/web/AddOwnerForm.html'>org.springframework.samples.petclinic.web.AddOwnerForm</a>
+          </td>
+        </tr>
+        <tr>
+          <td>POST</td>
+          <td>"/owners/new"</td>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/web/AddOwnerForm.html'>org.springframework.samples.petclinic.web.AddOwnerForm</a>
+          </td>
+        </tr>
+        <tr>
+          <td>GET</td>
+          <td>"/owners/search"</td>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/web/FindOwnersForm.html'>org.springframework.samples.petclinic.web.FindOwnersForm</a>
+          </td>
+        </tr>
+        <tr>
+          <td>GET</td>
+          <td>"/owners/{ownerId}"</td>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/web/ClinicController.html'>org.springframework.samples.petclinic.web.ClinicController</a>
+          </td>
+        </tr>
+        <tr>
+          <td>GET</td>
+          <td>"/owners/{ownerId}/edit"</td>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/web/EditOwnerForm.html'>org.springframework.samples.petclinic.web.EditOwnerForm</a>
+          </td>
+        </tr>
+        <tr>
+          <td>PUT</td>
+          <td>"/owners/{ownerId}/edit"</td>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/web/EditOwnerForm.html'>org.springframework.samples.petclinic.web.EditOwnerForm</a>
+          </td>
+        </tr>
+        <tr>
+          <td>GET</td>
+          <td>"/owners/{ownerId}/pets/new"</td>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/web/AddPetForm.html'>org.springframework.samples.petclinic.web.AddPetForm</a>
+          </td>
+        </tr>
+        <tr>
+          <td>POST</td>
+          <td>"/owners/{ownerId}/pets/new"</td>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/web/AddPetForm.html'>org.springframework.samples.petclinic.web.AddPetForm</a>
+          </td>
+        </tr>
+        <tr>
+          <td>GET</td>
+          <td>"/vets"</td>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/web/ClinicController.html'>org.springframework.samples.petclinic.web.ClinicController</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <hr />
+    <p>Generated by 
+      <a href='http://github.com/scottfrederick/springdoclet'>SpringDoclet</a>
+    </p>
+  </body>
+</html>
