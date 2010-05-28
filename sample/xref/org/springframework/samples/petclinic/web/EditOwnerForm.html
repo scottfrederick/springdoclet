@@ -52,27 +52,42 @@
 <a name="42" href="#42">42</a>  		dataBinder.setDisallowedFields(<span class="jxr_string">"id"</span>);
 <a name="43" href="#43">43</a>  	}
 <a name="44" href="#44">44</a>  
-<a name="45" href="#45">45</a>  	@RequestMapping(method = RequestMethod.GET)
-<a name="46" href="#46">46</a>  	<strong class="jxr_keyword">public</strong> String setupForm(@PathVariable(<span class="jxr_string">"ownerId"</span>) <strong class="jxr_keyword">int</strong> ownerId, Model model) {
-<a name="47" href="#47">47</a>  		Owner owner = <strong class="jxr_keyword">this</strong>.clinic.loadOwner(ownerId);
-<a name="48" href="#48">48</a>  		model.addAttribute(owner);
-<a name="49" href="#49">49</a>  		<strong class="jxr_keyword">return</strong> <span class="jxr_string">"owners/form"</span>;
-<a name="50" href="#50">50</a>  	}
-<a name="51" href="#51">51</a>  
-<a name="52" href="#52">52</a>  	@RequestMapping(method = RequestMethod.PUT)
-<a name="53" href="#53">53</a>  	<strong class="jxr_keyword">public</strong> String processSubmit(@ModelAttribute <a href="../../../../../org/springframework/samples/petclinic/Owner.html">Owner</a> owner, BindingResult result, SessionStatus status) {
-<a name="54" href="#54">54</a>  		<strong class="jxr_keyword">new</strong> <a href="../../../../../org/springframework/samples/petclinic/validation/OwnerValidator.html">OwnerValidator</a>().validate(owner, result);
-<a name="55" href="#55">55</a>  		<strong class="jxr_keyword">if</strong> (result.hasErrors()) {
-<a name="56" href="#56">56</a>  			<strong class="jxr_keyword">return</strong> <span class="jxr_string">"owners/form"</span>;
-<a name="57" href="#57">57</a>  		}
-<a name="58" href="#58">58</a>  		<strong class="jxr_keyword">else</strong> {
-<a name="59" href="#59">59</a>  			<strong class="jxr_keyword">this</strong>.clinic.storeOwner(owner);
-<a name="60" href="#60">60</a>  			status.setComplete();
-<a name="61" href="#61">61</a>  			<strong class="jxr_keyword">return</strong> <span class="jxr_string">"redirect:/owners/"</span> + owner.getId();
-<a name="62" href="#62">62</a>  		}
-<a name="63" href="#63">63</a>  	}
-<a name="64" href="#64">64</a>  
-<a name="65" href="#65">65</a>  }
+<a name="45" href="#45">45</a>    <em class="jxr_javadoccomment">/**</em>
+<a name="46" href="#46">46</a>  <em class="jxr_javadoccomment">   * Displays an edit form for the specified owner.</em>
+<a name="47" href="#47">47</a>  <em class="jxr_javadoccomment">   *</em>
+<a name="48" href="#48">48</a>  <em class="jxr_javadoccomment">   * @param ownerId the ID of the owner to edit</em>
+<a name="49" href="#49">49</a>  <em class="jxr_javadoccomment">   * @param model the input model</em>
+<a name="50" href="#50">50</a>  <em class="jxr_javadoccomment">   * @return the edit form view name</em>
+<a name="51" href="#51">51</a>  <em class="jxr_javadoccomment">   */</em>
+<a name="52" href="#52">52</a>  	@RequestMapping(method = RequestMethod.GET)
+<a name="53" href="#53">53</a>  	<strong class="jxr_keyword">public</strong> String setupForm(@PathVariable(<span class="jxr_string">"ownerId"</span>) <strong class="jxr_keyword">int</strong> ownerId, Model model) {
+<a name="54" href="#54">54</a>  		Owner owner = <strong class="jxr_keyword">this</strong>.clinic.loadOwner(ownerId);
+<a name="55" href="#55">55</a>  		model.addAttribute(owner);
+<a name="56" href="#56">56</a>  		<strong class="jxr_keyword">return</strong> <span class="jxr_string">"owners/form"</span>;
+<a name="57" href="#57">57</a>  	}
+<a name="58" href="#58">58</a>  
+<a name="59" href="#59">59</a>    <em class="jxr_javadoccomment">/**</em>
+<a name="60" href="#60">60</a>  <em class="jxr_javadoccomment">   * Processes an owner edit form submission.</em>
+<a name="61" href="#61">61</a>  <em class="jxr_javadoccomment">   *</em>
+<a name="62" href="#62">62</a>  <em class="jxr_javadoccomment">   * @param owner the owner</em>
+<a name="63" href="#63">63</a>  <em class="jxr_javadoccomment">   * @param result the binding results</em>
+<a name="64" href="#64">64</a>  <em class="jxr_javadoccomment">   * @param status the session status</em>
+<a name="65" href="#65">65</a>  <em class="jxr_javadoccomment">   * @return the next view name to display</em>
+<a name="66" href="#66">66</a>  <em class="jxr_javadoccomment">   */</em>
+<a name="67" href="#67">67</a>  	@RequestMapping(method = RequestMethod.PUT)
+<a name="68" href="#68">68</a>  	<strong class="jxr_keyword">public</strong> String processSubmit(@ModelAttribute <a href="../../../../../org/springframework/samples/petclinic/Owner.html">Owner</a> owner, BindingResult result, SessionStatus status) {
+<a name="69" href="#69">69</a>  		<strong class="jxr_keyword">new</strong> <a href="../../../../../org/springframework/samples/petclinic/validation/OwnerValidator.html">OwnerValidator</a>().validate(owner, result);
+<a name="70" href="#70">70</a>  		<strong class="jxr_keyword">if</strong> (result.hasErrors()) {
+<a name="71" href="#71">71</a>  			<strong class="jxr_keyword">return</strong> <span class="jxr_string">"owners/form"</span>;
+<a name="72" href="#72">72</a>  		}
+<a name="73" href="#73">73</a>  		<strong class="jxr_keyword">else</strong> {
+<a name="74" href="#74">74</a>  			<strong class="jxr_keyword">this</strong>.clinic.storeOwner(owner);
+<a name="75" href="#75">75</a>  			status.setComplete();
+<a name="76" href="#76">76</a>  			<strong class="jxr_keyword">return</strong> <span class="jxr_string">"redirect:/owners/"</span> + owner.getId();
+<a name="77" href="#77">77</a>  		}
+<a name="78" href="#78">78</a>  	}
+<a name="79" href="#79">79</a>  
+<a name="80" href="#80">80</a>  }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>

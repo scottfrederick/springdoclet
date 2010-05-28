@@ -42,7 +42,7 @@
   
     
             <div class="xleft">
-        Last Published: 2010-05-02
+        Last Published: 2010-05-28
                       </div>
             <div class="xright">            <a href="${project.url}">petclinic</a>
             
@@ -87,10 +87,6 @@
             
       
             
-      
-            
-      
-            
             
             
       
@@ -120,15 +116,7 @@
           </li>
                   
     <li class="none">
-                    <a href="plugin-management.html">Plugin Management</a>
-          </li>
-                  
-    <li class="none">
                     <a href="license.html">Project License</a>
-          </li>
-                  
-    <li class="none">
-                    <a href="plugins.html">Project Plugins</a>
           </li>
                   
     <li class="none">
@@ -187,7 +175,7 @@ function offsetDate(id, offset) {
     var now = new Date();
     var nowTime = now.getTime();
     var localOffset = now.getTimezoneOffset();
-    var developerTime = nowTime + ( offset * 60 * 60 * 1000 )+ ( localOffset * 60 * 1000 );
+    var developerTime = nowTime + ( offset * 60 * 60 * 1000 ) + ( localOffset * 60 * 1000 );
     var developerDate = new Date(developerTime);
 
     document.getElementById(id).innerHTML = developerDate;
