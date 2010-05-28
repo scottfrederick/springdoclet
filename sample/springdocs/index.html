@@ -9,28 +9,94 @@
     <div id='components'>
       <h2>Components</h2>
       <h3>Controller</h3>
-      <a href='../xref/org/springframework/samples/petclinic/web/AddOwnerForm.html'>org.springframework.samples.petclinic.web.AddOwnerForm</a>
-      <br />
-      <a href='../xref/org/springframework/samples/petclinic/web/AddPetForm.html'>org.springframework.samples.petclinic.web.AddPetForm</a>
-      <br />
-      <a href='../xref/org/springframework/samples/petclinic/web/AddVisitForm.html'>org.springframework.samples.petclinic.web.AddVisitForm</a>
-      <br />
-      <a href='../xref/org/springframework/samples/petclinic/web/ClinicController.html'>org.springframework.samples.petclinic.web.ClinicController</a>
-      <br />
-      <a href='../xref/org/springframework/samples/petclinic/web/EditOwnerForm.html'>org.springframework.samples.petclinic.web.EditOwnerForm</a>
-      <br />
-      <a href='../xref/org/springframework/samples/petclinic/web/EditPetForm.html'>org.springframework.samples.petclinic.web.EditPetForm</a>
-      <br />
-      <a href='../xref/org/springframework/samples/petclinic/web/FindOwnersForm.html'>org.springframework.samples.petclinic.web.FindOwnersForm</a>
-      <br />
+      <table id='Controller'>
+        <tr>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/web/AddOwnerForm.html'>org.springframework.samples.petclinic.web.AddOwnerForm</a>
+          </td>
+          <td>
+            <code>JavaBean form controller that is used to add a new <code>Owner</code> to the system.</code>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/web/AddPetForm.html'>org.springframework.samples.petclinic.web.AddPetForm</a>
+          </td>
+          <td>
+            <code>JavaBean form controller that is used to add a new <code>Pet</code> to the system.</code>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/web/AddVisitForm.html'>org.springframework.samples.petclinic.web.AddVisitForm</a>
+          </td>
+          <td>
+            <code>JavaBean form controller that is used to add a new <code>Visit</code> to the system.</code>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/web/ClinicController.html'>org.springframework.samples.petclinic.web.ClinicController</a>
+          </td>
+          <td>
+            <code>Annotation-driven <em>MultiActionController</em> that handles all non-form URL's.</code>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/web/EditOwnerForm.html'>org.springframework.samples.petclinic.web.EditOwnerForm</a>
+          </td>
+          <td>
+            <code>JavaBean Form controller that is used to edit an existing <code>Owner</code>.</code>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/web/EditPetForm.html'>org.springframework.samples.petclinic.web.EditPetForm</a>
+          </td>
+          <td>
+            <code>JavaBean Form controller that is used to edit an existing <code>Pet</code>.</code>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/web/FindOwnersForm.html'>org.springframework.samples.petclinic.web.FindOwnersForm</a>
+          </td>
+          <td>
+            <code>JavaBean Form controller that is used to search for <code>Owner</code>s by last name.</code>
+          </td>
+        </tr>
+      </table>
       <h3>Repository</h3>
-      <a href='../xref/org/springframework/samples/petclinic/hibernate/HibernateClinic.html'>org.springframework.samples.petclinic.hibernate.HibernateClinic</a>
-      <br />
-      <a href='../xref/org/springframework/samples/petclinic/jpa/EntityManagerClinic.html'>org.springframework.samples.petclinic.jpa.EntityManagerClinic</a>
-      <br />
+      <table id='Repository'>
+        <tr>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/hibernate/HibernateClinic.html'>org.springframework.samples.petclinic.hibernate.HibernateClinic</a>
+          </td>
+          <td>
+            <code>Hibernate implementation of the Clinic interface.</code>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/jpa/EntityManagerClinic.html'>org.springframework.samples.petclinic.jpa.EntityManagerClinic</a>
+          </td>
+          <td>
+            <code>JPA implementation of the Clinic interface using EntityManager.</code>
+          </td>
+        </tr>
+      </table>
       <h3>Service</h3>
-      <a href='../xref/org/springframework/samples/petclinic/jdbc/SimpleJdbcClinic.html'>org.springframework.samples.petclinic.jdbc.SimpleJdbcClinic</a>
-      <br />
+      <table id='Service'>
+        <tr>
+          <td>
+            <a href='../xref/org/springframework/samples/petclinic/jdbc/SimpleJdbcClinic.html'>org.springframework.samples.petclinic.jdbc.SimpleJdbcClinic</a>
+          </td>
+          <td>
+            <code>A simple JDBC-based implementation of the {@link Clinic} interface.</code>
+          </td>
+        </tr>
+      </table>
     </div>
     <hr />
     <div id='request-mappings'>
@@ -40,12 +106,16 @@
           <th>Method</th>
           <th>URL Template</th>
           <th>Class</th>
+          <th>Description</th>
         </tr>
         <tr>
           <td>GET</td>
           <td>"/"</td>
           <td>
             <a href='../xref/org/springframework/samples/petclinic/web/ClinicController.html'>org.springframework.samples.petclinic.web.ClinicController</a>
+          </td>
+          <td>
+            <code>Displays the the welcome view.</code>
           </td>
         </tr>
         <tr>
@@ -54,12 +124,18 @@
           <td>
             <a href='../xref/org/springframework/samples/petclinic/web/FindOwnersForm.html'>org.springframework.samples.petclinic.web.FindOwnersForm</a>
           </td>
+          <td>
+            <code> </code>
+          </td>
         </tr>
         <tr>
           <td>GET</td>
           <td>"/owners/*/pets/{petId}/edit"</td>
           <td>
             <a href='../xref/org/springframework/samples/petclinic/web/EditPetForm.html'>org.springframework.samples.petclinic.web.EditPetForm</a>
+          </td>
+          <td>
+            <code>Displays an edit form for the specified owner.</code>
           </td>
         </tr>
         <tr>
@@ -68,12 +144,18 @@
           <td>
             <a href='../xref/org/springframework/samples/petclinic/web/EditPetForm.html'>org.springframework.samples.petclinic.web.EditPetForm</a>
           </td>
+          <td>
+            <code>Processes a pet edit form submission.</code>
+          </td>
         </tr>
         <tr>
           <td>POST</td>
           <td>"/owners/*/pets/{petId}/edit"</td>
           <td>
             <a href='../xref/org/springframework/samples/petclinic/web/EditPetForm.html'>org.springframework.samples.petclinic.web.EditPetForm</a>
+          </td>
+          <td>
+            <code>Processes a pet edit form submission.</code>
           </td>
         </tr>
         <tr>
@@ -82,6 +164,9 @@
           <td>
             <a href='../xref/org/springframework/samples/petclinic/web/EditPetForm.html'>org.springframework.samples.petclinic.web.EditPetForm</a>
           </td>
+          <td>
+            <code>Deletes a pet.</code>
+          </td>
         </tr>
         <tr>
           <td>GET</td>
@@ -89,12 +174,18 @@
           <td>
             <a href='../xref/org/springframework/samples/petclinic/web/ClinicController.html'>org.springframework.samples.petclinic.web.ClinicController</a>
           </td>
+          <td>
+            <code>Displays a list of all visits for a specified pet.</code>
+          </td>
         </tr>
         <tr>
           <td>GET</td>
           <td>"/owners/*/pets/{petId}/visits/new"</td>
           <td>
             <a href='../xref/org/springframework/samples/petclinic/web/AddVisitForm.html'>org.springframework.samples.petclinic.web.AddVisitForm</a>
+          </td>
+          <td>
+            <code> </code>
           </td>
         </tr>
         <tr>
@@ -103,6 +194,9 @@
           <td>
             <a href='../xref/org/springframework/samples/petclinic/web/AddVisitForm.html'>org.springframework.samples.petclinic.web.AddVisitForm</a>
           </td>
+          <td>
+            <code> </code>
+          </td>
         </tr>
         <tr>
           <td>GET</td>
@@ -110,12 +204,18 @@
           <td>
             <a href='../xref/org/springframework/samples/petclinic/web/AddOwnerForm.html'>org.springframework.samples.petclinic.web.AddOwnerForm</a>
           </td>
+          <td>
+            <code> </code>
+          </td>
         </tr>
         <tr>
           <td>POST</td>
           <td>"/owners/new"</td>
           <td>
             <a href='../xref/org/springframework/samples/petclinic/web/AddOwnerForm.html'>org.springframework.samples.petclinic.web.AddOwnerForm</a>
+          </td>
+          <td>
+            <code> </code>
           </td>
         </tr>
         <tr>
@@ -124,6 +224,9 @@
           <td>
             <a href='../xref/org/springframework/samples/petclinic/web/FindOwnersForm.html'>org.springframework.samples.petclinic.web.FindOwnersForm</a>
           </td>
+          <td>
+            <code> </code>
+          </td>
         </tr>
         <tr>
           <td>GET</td>
@@ -131,12 +234,18 @@
           <td>
             <a href='../xref/org/springframework/samples/petclinic/web/ClinicController.html'>org.springframework.samples.petclinic.web.ClinicController</a>
           </td>
+          <td>
+            <code>Displays the specified owner.</code>
+          </td>
         </tr>
         <tr>
           <td>GET</td>
           <td>"/owners/{ownerId}/edit"</td>
           <td>
             <a href='../xref/org/springframework/samples/petclinic/web/EditOwnerForm.html'>org.springframework.samples.petclinic.web.EditOwnerForm</a>
+          </td>
+          <td>
+            <code>Displays an edit form for the specified owner.</code>
           </td>
         </tr>
         <tr>
@@ -145,12 +254,18 @@
           <td>
             <a href='../xref/org/springframework/samples/petclinic/web/EditOwnerForm.html'>org.springframework.samples.petclinic.web.EditOwnerForm</a>
           </td>
+          <td>
+            <code>Processes an owner edit form submission.</code>
+          </td>
         </tr>
         <tr>
           <td>GET</td>
           <td>"/owners/{ownerId}/pets/new"</td>
           <td>
             <a href='../xref/org/springframework/samples/petclinic/web/AddPetForm.html'>org.springframework.samples.petclinic.web.AddPetForm</a>
+          </td>
+          <td>
+            <code> </code>
           </td>
         </tr>
         <tr>
@@ -159,6 +274,9 @@
           <td>
             <a href='../xref/org/springframework/samples/petclinic/web/AddPetForm.html'>org.springframework.samples.petclinic.web.AddPetForm</a>
           </td>
+          <td>
+            <code> </code>
+          </td>
         </tr>
         <tr>
           <td>GET</td>
@@ -166,12 +284,15 @@
           <td>
             <a href='../xref/org/springframework/samples/petclinic/web/ClinicController.html'>org.springframework.samples.petclinic.web.ClinicController</a>
           </td>
+          <td>
+            <code>Displays all vets.</code>
+          </td>
         </tr>
       </table>
     </div>
     <hr />
     <p>Generated by 
-      <a href='http://github.com/scottfrederick/springdoclet'>SpringDoclet</a>
+      <a href='http://scottfrederick.github.com/springdoclet/'>SpringDoclet</a>
     </p>
   </body>
 </html>
