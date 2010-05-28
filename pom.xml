@@ -7,7 +7,7 @@
   <groupId>org.springdoclet</groupId>
   <artifactId>springdoclet</artifactId>
   <name>Spring Doclet</name>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
   <properties>
     <groovy.version>1.7.2</groovy.version>
     <spring.version>3.0.2.RELEASE</spring.version>

@@ -6,6 +6,7 @@ import groovy.xml.MarkupBuilder
 import org.springdoclet.Collector
 import org.springdoclet.Annotations
 import org.springdoclet.PathBuilder
+import org.springdoclet.TextUtils
 
 @SuppressWarnings("GroovyVariableNotAssigned")
 class RequestMappingCollector implements Collector {
@@ -31,16 +32,16 @@ class RequestMappingCollector implements Collector {
       for (annotation in method.annotations()) {
         def annotationType = Annotations.getTypeName(annotation)
         if (annotationType?.startsWith(MAPPING_TYPE)) {
-          processMethod classDoc, rootPath, defaultHttpMethods, annotation
+          processMethod classDoc, method, rootPath, defaultHttpMethods, annotation
         }
       }
     }
   }
 
-  private def processMethod(classDoc, rootPath, defaultHttpMethods, annotation) {
+  private def processMethod(classDoc, methodDoc, rootPath, defaultHttpMethods, annotation) {
     def (path, httpMethods) = getMappingElements(annotation)
     for (httpMethod in (httpMethods ?: defaultHttpMethods)) {
-      addMapping classDoc, "$rootPath$path", httpMethod
+      addMapping classDoc, methodDoc, "$rootPath$path", httpMethod
     }
   }
 
@@ -70,9 +71,12 @@ class RequestMappingCollector implements Collector {
     return null
   }
 
-  private void addMapping(classDoc, path, httpMethod) {
+  private void addMapping(classDoc, methodDoc, path, httpMethod) {
     def httpMethodName = httpMethod.toString() - METHOD_TYPE
-    mappings << [path: path, httpMethodName: httpMethodName, className: classDoc.qualifiedTypeName()]
+    mappings << [path: path,
+            httpMethodName: httpMethodName,
+            className: classDoc.qualifiedTypeName(),
+            text: TextUtils.getFirstSentence(methodDoc.commentText())]
   }
 
   void writeOutput(MarkupBuilder builder, PathBuilder paths) {
@@ -84,6 +88,7 @@ class RequestMappingCollector implements Collector {
           th 'Method'
           th 'URL Template'
           th 'Class'
+          th 'Description'
         }
         for (mapping in sortedMappings) {
           tr {
@@ -92,6 +97,7 @@ class RequestMappingCollector implements Collector {
             td {
               a(href: paths.buildFilePath(mapping.className), mapping.className)
             }
+            td { code { mkp.yieldUnescaped(mapping.text ?: ' ') } }
           }
         }
       }

@@ -42,6 +42,13 @@ public class EditOwnerForm {
 		dataBinder.setDisallowedFields("id");
 	}
 
+  /**
+   * Displays an edit form for the specified owner.
+   *
+   * @param ownerId the ID of the owner to edit
+   * @param model the input model
+   * @return the edit form view name
+   */
 	@RequestMapping(method = RequestMethod.GET)
 	public String setupForm(@PathVariable("ownerId") int ownerId, Model model) {
 		Owner owner = this.clinic.loadOwner(ownerId);
@@ -49,6 +56,14 @@ public class EditOwnerForm {
 		return "owners/form";
 	}
 
+  /**
+   * Processes an owner edit form submission.
+   *
+   * @param owner the owner
+   * @param result the binding results
+   * @param status the session status
+   * @return the next view name to display
+   */
 	@RequestMapping(method = RequestMethod.PUT)
 	public String processSubmit(@ModelAttribute Owner owner, BindingResult result, SessionStatus status) {
 		new OwnerValidator().validate(owner, result);

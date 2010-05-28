@@ -32,7 +32,7 @@ public class ClinicController {
 	}
 
 	/**
-	 * Custom handler for the welcome view.
+	 * Displays the the welcome view.
 	 * <p>
 	 * Note that this handler relies on the RequestToViewNameTranslator to
 	 * determine the logical view name based on the request URL: "/welcome.do"
@@ -44,7 +44,7 @@ public class ClinicController {
 	}
 
 	/**
-	 * Custom handler for displaying vets.
+	 * Displays all vets.
 	 *
 	 * <p>Note that this handler returns a plain {@link ModelMap} object instead of
 	 * a ModelAndView, thus leveraging convention-based model attribute names.
@@ -61,7 +61,7 @@ public class ClinicController {
 	}
 
 	/**
-	 * Custom handler for displaying an owner.
+	 * Displays the specified owner.
 	 *
 	 * @param ownerId the ID of the owner to display
 	 * @return a ModelMap with the model attributes for the view
@@ -74,7 +74,7 @@ public class ClinicController {
 	}
 
 	/**
-	 * Custom handler for displaying an list of visits.
+	 * Displays a list of all visits for a specified pet.
 	 *
 	 * @param petId the ID of the pet whose visits to display
 	 * @return a ModelMap with the model attributes for the view

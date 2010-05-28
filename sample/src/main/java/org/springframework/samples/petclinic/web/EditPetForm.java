@@ -50,6 +50,13 @@ public class EditPetForm {
 		dataBinder.setDisallowedFields("id");
 	}
 
+  /**
+   * Displays an edit form for the specified owner.
+   *
+   * @param petId the ID of the pet to edit
+   * @param model the input model
+   * @return the edit form view name
+   */
 	@RequestMapping(method = RequestMethod.GET)
 	public String setupForm(@PathVariable("petId") int petId, Model model) {
 		Pet pet = this.clinic.loadPet(petId);
@@ -57,6 +64,14 @@ public class EditPetForm {
 		return "pets/form";
 	}
 
+  /**
+   * Processes a pet edit form submission.
+   *
+   * @param pet the pet
+   * @param result the binding results
+   * @param status the session status
+   * @return the next view name to display
+   */
 	@RequestMapping(method = { RequestMethod.PUT, RequestMethod.POST })
 	public String processSubmit(@ModelAttribute("pet") Pet pet, BindingResult result, SessionStatus status) {
 		new PetValidator().validate(pet, result);
@@ -70,6 +85,12 @@ public class EditPetForm {
 		}
 	}
 
+  /**
+   * Deletes a pet.
+   *
+   * @param petId the ID of the pet to delete
+   * @return the next view name
+   */
 	@RequestMapping(method = RequestMethod.DELETE)
 	public String deletePet(@PathVariable int petId) {
 		Pet pet = this.clinic.loadPet(petId);

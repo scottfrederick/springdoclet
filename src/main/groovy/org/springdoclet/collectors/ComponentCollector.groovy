@@ -6,6 +6,7 @@ import groovy.xml.MarkupBuilder
 import org.springdoclet.Collector
 import org.springdoclet.Annotations
 import org.springdoclet.PathBuilder
+import org.springdoclet.TextUtils
 
 class ComponentCollector implements Collector {
   private static String COMPONENT_TYPE = 'org.springframework.stereotype.'
@@ -22,10 +23,11 @@ class ComponentCollector implements Collector {
   }
 
   private void addComponent(classDoc, type) {
+    def component = [className: classDoc.qualifiedTypeName(), text: TextUtils.getFirstSentence(classDoc.commentText())]
     if (componentsByType[type] == null)
-      componentsByType[type] = [classDoc.qualifiedTypeName()]
+      componentsByType[type] = [component]
     else
-      componentsByType[type] << classDoc.qualifiedTypeName()
+      componentsByType[type] << component
   }
 
   void writeOutput(MarkupBuilder builder, PathBuilder paths) {
@@ -33,9 +35,22 @@ class ComponentCollector implements Collector {
       h2 'Components'
       for (entry in componentsByType.sort()) {
         h3 entry.key
-        for (component in entry.value.sort()) {
-          a(href:paths.buildFilePath(component), component)
-          br()
+        table(id:entry.key) {
+/*
+          tr {
+            th 'Class'
+            th 'Description'
+          }
+*/
+          def sortedComponents = entry.value.sort { it.className }
+          for (component in sortedComponents) {
+            tr {
+              td {
+                a(href: paths.buildFilePath(component.className), component.className)
+              }
+              td { code { mkp.yieldUnescaped(component.text ?: ' ') } }
+            }
+          }
         }
       }
     }

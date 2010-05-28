@@ -58,7 +58,7 @@ th {
 td {
   border: none;
   border-bottom: 1px solid #ddd;
-  padding: 3px;
+  padding: .5em;
 }
 """
 }
