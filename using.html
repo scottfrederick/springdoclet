@@ -13,9 +13,22 @@
 <div id="container">
 <a href="index.html"><h1>SpringDoclet</h1></a>
 
+<h2>Downloading SpringDoclet</h2>
+
+You can download pre-built <a href="http://github.com/scottfrederick/springdoclet/downloads">binaries</a> of 
+SpringDoclet as a jar file. For each pre-built version of SpringDoclet there are two jar files. The
+springdoclet-&lt;version&gt;.jar file contains just the compiled code for the SpringDoclet itself. The
+springdoclet-&lt;version&gt;-jar-with-dependencies.jar file contains SpringDoclet along with all libraries needed by
+the doclet.
+
 <h2>Building SpringDoclet</h2>
 
-<p>To build SpringDoclet, use <a href="http://maven.apache.org">Maven</a> from the root directory of the project.</p>
+To build SpringDoclet from source, you will need to either download the code from GitHub as a
+<a href="http://github.com/scottfrederick/springdoclet/zipball/master">zip</a> or
+<a href="http://github.com/scottfrederick/springdoclet/tarball/master">tar</a> file, or clone the
+GitHub repository.    
+
+<p>After downloading the code, use <a href="http://maven.apache.org">Maven</a> from the root directory of the project.</p>
 
 <ul>
 <li>To build the doclet and deploy it to a local Maven repository, use "mvn install".</li>
@@ -24,7 +37,7 @@
  contains the SpringDoclet classes and all dependent libraries.</li>
 </ul>
 
-<h2>Testing SpringDoclet</h2>
+<h3>Testing SpringDoclet</h3>
 
 <p>After building the doclet, you can test it with either Maven or Ant in the "sample" directory in the project.</p>
 
@@ -58,8 +71,10 @@ add the class that implements the annotation type to the javadoc classpath</code
 <p>This message will be shown for all annotations found in the Java source but not found on the classpath. It can be
 ignored for all non-Spring annotations.</p>
 
-<p>This doclet is implemented in the Groovy programming language. Javadoc will also need the Groovy runtime (e.g.
-groovy-1.7.2.jar) in its classpath to execute the SpringDoclet.</p>
+<p>This doclet is implemented in the Groovy programming language. If you built or downloaded the jar-with-dependencies
+then only the SpringDoclet jar file needs to be in the Javadoc classpath. If you built or downloaded the jar without
+dependencies then Javadoc will also need the Groovy runtime (e.g. groovy-1.7.2.jar) in its classpath to execute
+the SpringDoclet.</p>
 
 <h3>Options</h3>
 
