@@ -10,6 +10,13 @@ class Configuration {
   private static final String DEFAULT_STYLESHEET = './spring-summary.css'
   private static final String DEFAULT_LINKPATH = './'
 
+  // List of ignored options
+  // TODO: Implement support for these since they are considered standard options
+  private static final Map IGNORED_OPTIONS = [ 
+    '-doctitle': 2,
+    '-windowtitle': 2,
+  ]
+
   String[][] options
 
   def getOutputDirectory() {
@@ -50,6 +57,8 @@ class Configuration {
       return 2
     } else if (option.equals(OPTION_LINKPATH)) {
       return 2
+    } else if (IGNORED_OPTIONS.containsKey(option)) {
+      return IGNORED_OPTIONS[option]
     }
     return 0
   }
