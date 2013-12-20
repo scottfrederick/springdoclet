@@ -1,13 +1,13 @@
 package org.springdoclet
 
-import com.sun.javadoc.Doclet
 import com.sun.javadoc.RootDoc
+import com.sun.tools.doclets.standard.Standard
 import org.springdoclet.writers.StylesheetWriter
 import org.springdoclet.writers.HtmlWriter
 import org.springdoclet.collectors.RequestMappingCollector
 import org.springdoclet.collectors.ComponentCollector
 
-class SpringDoclet extends Doclet {
+class SpringDoclet extends Standard{
   private static Configuration config = new Configuration()
 
   public static boolean start(RootDoc root) {
