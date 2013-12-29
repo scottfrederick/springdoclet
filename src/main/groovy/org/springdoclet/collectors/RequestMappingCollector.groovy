@@ -41,8 +41,13 @@ class RequestMappingCollector implements Collector {
   private def processMethod(classDoc, methodDoc, rootPath, defaultHttpMethods, annotation) {
     def (path, httpMethods) = getMappingElements(annotation)
     for (httpMethod in (httpMethods ?: defaultHttpMethods)) {
-      addMapping classDoc, methodDoc, "$rootPath$path", httpMethod
+	addMapping classDoc, methodDoc, concatenatePaths(rootPath, path), httpMethod    
     }
+
+  }
+
+  private def concatenatePaths(rootPath, path) {
+	return "$rootPath$path".replaceAll("\"\"", "/").replaceAll("//", "/")
   }
 
   private def getMappingAnnotation(annotations) {
